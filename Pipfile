@@ -1,0 +1,24 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[requires]
+python_version = "3"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+django-filter = "*"
+djangorestframework-recursive = "*"
+gunicorn = "*"
+django-cors-headers = "*"
+dj-rest-auth = "*"
+mysqlclient = "*"
+requests = "*"
+python-dotenv = "*"
+mollie-api-python = "*"
+django-ipware = "*"
+sentry-sdk = "*"
+
+[dev-packages]
