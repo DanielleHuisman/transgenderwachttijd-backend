@@ -8,17 +8,11 @@ python_version = "3"
 
 [packages]
 django = "*"
-djangorestframework = "*"
-django-filter = "*"
-djangorestframework-recursive = "*"
-gunicorn = "*"
 django-cors-headers = "*"
-dj-rest-auth = "*"
+gunicorn = "*"
 mysqlclient = "*"
-requests = "*"
 python-dotenv = "*"
-mollie-api-python = "*"
-django-ipware = "*"
+requests = "*"
 sentry-sdk = "*"
 
 [dev-packages]
