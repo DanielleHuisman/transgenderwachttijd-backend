@@ -11,30 +11,6 @@ ALLOWED_HOSTS = [origin.strip() for origin in os.getenv('ALLOWED_HOSTS', '').spl
 FORCE_SCRIPT_NAME = os.getenv('FORCE_SCRIPT_NAME')
 
 
-# Database
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'HOST': os.getenv('DATABASE_HOST', 'localhost'),
-        'PORT': os.getenv('DATABASE_PORT', '3306'),
-        'USER': os.getenv('DATABASE_USERNAME', 'transgenderwachttijd'),
-        'PASSWORD': os.getenv('DATABASE_PASSWORD', ''),
-        'NAME': os.getenv('DATABASE_NAME', 'transgenderwachttijd')
-    }
-}
-
-
-# Cache
-
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
-        'LOCATION': 'cache'
-    }
-}
-
-
 # Cross-Origin Resource Sharing (CORS)
 
 CORS_ALLOWED_ORIGINS = [origin.strip() for origin in os.getenv('CORS_ALLOWED_ORIGINS', '').split(',')]
