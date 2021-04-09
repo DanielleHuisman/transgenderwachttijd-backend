@@ -45,3 +45,19 @@ class PDFReader:
             return None
 
         return ' '.join(self.lines[start:end])
+
+
+def soup_find_string(soup) -> Optional[str]:
+    length = len(soup.contents)
+    if length == 0:
+        return soup.string
+    else:
+        for child in soup.contents:
+            text = child.string
+            if not text:
+                continue
+            text = text.strip(' \u200b\u00a0')
+            if len(text) > 0:
+                return text
+
+    return None
