@@ -2,7 +2,7 @@ import re
 
 from .base import Scraper
 
-WEEKS_REGEX = re.compile(r'(\d*) weken', re.IGNORECASE)
+WEEKS_REGEX = re.compile(r'(\d+) weken', re.IGNORECASE)
 
 
 class ScraperRadboudumc(Scraper):
