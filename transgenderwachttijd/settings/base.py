@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_q',
     'corsheaders',
     'providers.apps.ProvidersConfig',
     'services.apps.ServicesConfig'
@@ -99,6 +100,8 @@ DATABASES = {
         'NAME': os.getenv('DATABASE_NAME', 'transgenderwachttijd')
     }
 }
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
 
 # Cache
 
@@ -170,3 +173,20 @@ SESSION_COOKIE_SAMESITE = None
 # Sentry
 
 SENTRY_DSN = os.getenv('SENTRY_DSN')
+
+
+# Django Q
+
+Q_CLUSTER = {
+    'name': 'DjangoORM',
+    'workers': 2,
+    'timeout': 90,
+    'retry': 120,
+    'bulk': 10,
+    'orm': 'default',
+    'error_reporter': {
+        'sentry': {
+            'dsn': SENTRY_DSN
+        }
+    } if SENTRY_DSN else None
+}

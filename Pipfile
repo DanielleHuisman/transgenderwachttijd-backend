@@ -8,8 +8,10 @@ python_version = "3"
 
 [packages]
 beautifulsoup4 = "*"
+croniter = "*"
 django = "*"
 django-cors-headers = "*"
+django-q = {extras = ["sentry"], version = "*"}
 gunicorn = "*"
 mysqlclient = "*"
 pdfreader = "*"

@@ -20,8 +20,9 @@ You can install Pipenv by running `pip install pipenv` in a terminal.
 10. Open PyCharm's terminal (bottom left).
 11. Run the migrations with `python manage.py migrate`.
 12. Seed the database with `python manage.py loaddata */fixtures/*.json`.
-13. Create an admin user with `python manage.py createsuperuser`.
-14. Close PyCharm's terminal.
+13. Run the cache migrations with `python manage.py createcachetable`.
+14. Create an admin user with `python manage.py createsuperuser`.
+15. Close PyCharm's terminal.
 
 ### Running
 PyCharm should have automatically detected Django and created a run configuration for the project.

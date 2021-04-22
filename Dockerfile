@@ -29,5 +29,6 @@ RUN touch .production && mkdir -p /srv/app/dist/static
 # Expose default port
 EXPOSE 3000
 
-# Define entrypoint of the app
-ENTRYPOINT ["/bin/sh", "/srv/app/start.sh"]
+# Define entrypoint and command of the app
+ENTRYPOINT ["/bin/sh"]
+CMD ["/srv/app/start_server.sh"]
