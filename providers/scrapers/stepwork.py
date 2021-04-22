@@ -2,7 +2,8 @@ import re
 
 from .base import Scraper
 
-WEEKS_REGEX = re.compile('(\d+) weken', re.IGNORECASE)
+HREF_REGEX = re.compile(r'wachttijden', re.IGNORECASE)
+WEEKS_REGEX = re.compile(r'(\d+) weken', re.IGNORECASE)
 
 
 class ScraperStepwork(Scraper):
@@ -13,7 +14,7 @@ class ScraperStepwork(Scraper):
     def scrape(self):
         soup = self.fetch_html_page(self.source_url())
 
-        link = soup.find(id='cl_text_6071be4d219e5').p.a['href']
+        link = soup.find(class_='customize-unpreviewable', href=HREF_REGEX)['href']
 
         reader = self.fetch_pdf_document(link)
         text = reader.find('stepwork transgenderzorg', 'de behandeling')
