@@ -2,6 +2,7 @@ import re
 
 from .base import Scraper
 
+STOP_REGEX = re.compile(r'aanmeldstop hanteren', re.IGNORECASE)
 WEEKS_REGEX = re.compile(r'(\d+) weken', re.IGNORECASE)
 
 SERVICES = [
@@ -17,6 +18,8 @@ class ScraperPsyTrans(Scraper):
 
     def scrape(self):
         text = self.fetch_page(self.source_url())
+
+        has_stop = STOP_REGEX.search(text) is not None
 
         waiting_times = []
 
@@ -38,3 +41,4 @@ class ScraperPsyTrans(Scraper):
             })
 
         print(waiting_times)
+        print(f'Has stop: {has_stop}')
