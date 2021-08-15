@@ -1,0 +1,47 @@
+[
+  {
+    "model": "services.serviceagegroup",
+    "pk": "0882bf40-b027-45d1-b231-53eb28787eac",
+    "fields": {
+      "name": "Adolescents",
+      "name_en": "Adolescents",
+      "name_nl": "Adolescenten"
+    }
+  },
+  {
+    "model": "services.serviceagegroup",
+    "pk": "288dd530-5b13-4043-b495-208e0ffa3cc1",
+    "fields": {
+      "name": "Adults",
+      "name_en": "Adults",
+      "name_nl": "Volwassenen"
+    }
+  },
+  {
+    "model": "services.serviceagegroup",
+    "pk": "9e07513a-39b4-480a-bdac-2b3653ef6923",
+    "fields": {
+      "name": "Children",
+      "name_en": "Children",
+      "name_nl": "Kinderen"
+    }
+  },
+  {
+    "model": "services.servicetype",
+    "pk": "0641997a-5ff4-4e3d-8c3b-53b43113a707",
+    "fields": {
+      "name": "Transmasculine",
+      "name_en": "Transmasculine",
+      "name_nl": "Transmannelijk"
+    }
+  },
+  {
+    "model": "services.servicetype",
+    "pk": "49c24e4f-8f2d-4023-a741-e99ea96e46de",
+    "fields": {
+      "name": "Transfeminine",
+      "name_en": "Transfeminine",
+      "name_nl": "Transvrouwelijk"
+    }
+  }
+]

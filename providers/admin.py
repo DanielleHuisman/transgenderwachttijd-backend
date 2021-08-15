@@ -1,17 +1,15 @@
-from django.contrib import admin
+from django.contrib.admin import register, ModelAdmin
 
 from .models import Provider, Location
 
 
-class ProviderAdmin(admin.ModelAdmin):
+@register(Provider)
+class ProviderAdmin(ModelAdmin):
     list_display = ['id', 'name', 'scraped_at']
     list_filter = ['scraped_at']
 
 
-class LocationAdmin(admin.ModelAdmin):
+@register(Location)
+class LocationAdmin(ModelAdmin):
     list_display = ['id', 'name', 'address', 'postal_code', 'city']
     list_filter = ['city', 'provider']
-
-
-admin.site.register(Provider, ProviderAdmin)
-admin.site.register(Location, LocationAdmin)
