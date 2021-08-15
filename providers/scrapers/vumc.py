@@ -5,8 +5,8 @@ from .base import Scraper
 TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
 
 SERVICES = [
-    ('Intake psychiater', 'intake psychiater', 'volwassen'),
-    ('Intake endocrinoloog', 'intake endocrinoloog', 'start diagnostiek kinderen'),
+    ('Eerste consult kinderen', 'eerste consult', 'volwassen'),
+    ('Eerste consult volwassenen', 'eerste consult', 'start diagnostiek kinderen'),
     ('Start diagnostiek kinderen', 'start diagnostiek kinderen', 'start diagnostiek volwassenen'),
     ('Start diagnostiek volwassenen', 'start diagnostiek volwassenen', 'hormoonbehandeling'),
     ('Hormoonbehandeling', 'hormoonbehandeling', 'chirurgie'),
@@ -38,7 +38,7 @@ class ScraperVUmc(Scraper):
 
     def scrape(self):
         reader = self.fetch_pdf_document(self.source_url())
-        print(reader.content)
+        # print(reader.content)
 
         month = reader.lines[0]
         year = reader.lines[1]
