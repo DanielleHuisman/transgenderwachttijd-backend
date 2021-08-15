@@ -19,6 +19,7 @@ class ScraperPsyTrans(Scraper):
     def scrape(self):
         text = self.fetch_page(self.source_url())
 
+        # TODO: this check is unreliable
         has_stop = STOP_REGEX.search(text) is not None
 
         waiting_times = []
