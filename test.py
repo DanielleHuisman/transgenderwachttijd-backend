@@ -1,4 +1,5 @@
 from providers.scrapers.base import Scraper
+from providers.scrapers.devaart import ScraperDeVaart
 from providers.scrapers.psytrans import ScraperPsyTrans
 from providers.scrapers.radboudumc import ScraperRadboudumc
 from providers.scrapers.stepwork import ScraperStepwork
@@ -9,7 +10,9 @@ from providers.scrapers.vumc import ScraperVUmc
 def test(scraper_name: str):
     scraper: Scraper
 
-    if scraper_name == 'psytrans':
+    if scraper_name == 'devaart':
+        scraper = ScraperDeVaart()
+    elif scraper_name == 'psytrans':
         scraper = ScraperPsyTrans()
     elif scraper_name == 'radboudumc':
         scraper = ScraperRadboudumc()
@@ -25,4 +28,4 @@ def test(scraper_name: str):
     scraper.scrape()
 
 
-test('psytrans')
+test('devaart')
