@@ -1,6 +1,6 @@
 from modeltranslation.translator import register, TranslationOptions
 
-from .models import ServiceAgeGroup, ServiceType, Service
+from .models import ServiceAgeGroup, ServiceType, Service, ServiceOffering
 
 
 @register(ServiceAgeGroup)
@@ -16,3 +16,8 @@ class ServiceTypeTranslationOptions(TranslationOptions):
 @register(Service)
 class ServiceTranslationOptions(TranslationOptions):
     fields = ('name', 'description')
+
+
+@register(ServiceOffering)
+class ServiceOfferingTranslationOptions(TranslationOptions):
+    fields = ('notes', )

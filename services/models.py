@@ -10,11 +10,17 @@ class ServiceAgeGroup(models.Model):
 
     name = models.CharField(max_length=255, unique=True)
 
+    def __str__(self):
+        return self.name
+
 
 class ServiceType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
 
     name = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
 
 
 class Service(models.Model):
@@ -23,15 +29,35 @@ class Service(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(blank=True, null=True)
 
-    provider = models.ForeignKey(Provider, related_name='services', on_delete=models.CASCADE)
     parent = models.ForeignKey(Provider, related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     dependencies = models.ManyToManyField('self', related_name='dependants', blank=True)
-    age_groups = models.ManyToManyField(ServiceAgeGroup, related_name='services', blank=True)
-    types = models.ManyToManyField(ServiceType, related_name='services', blank=True)
+
+    def __str__(self):
+        return self.name
 
 
-# TODO: Services should generic with a many-to-many relationship to providers.
-#       The age_groups and types fields should move to the join table. Additionally, the join table should have a field for provider specific notes about the service.
+class ServiceOffering(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+
+    notes = models.TextField(blank=True, null=True)
+
+    provider = models.ForeignKey(Provider, related_name='offerings', on_delete=models.CASCADE)
+    service = models.ForeignKey(Service, related_name='offerings', on_delete=models.CASCADE)
+    age_groups = models.ManyToManyField(ServiceAgeGroup, related_name='offerings', blank=True)
+    types = models.ManyToManyField(ServiceType, related_name='offerings', blank=True)
+
+    def __str__(self):
+        if self.age_groups.count() == ServiceAgeGroup.objects.count():
+            age_groups = 'All groups'
+        else:
+            age_groups = ', '.join([str(age_group) for age_group in self.age_groups.all()])
+
+        if self.types.count() == ServiceType.objects.count():
+            types = 'All types'
+        else:
+            types = ', '.join([str(service_type) for service_type in self.types.all()])
+
+        return f'{self.provider.name} - {self.service.name} ({age_groups} | {types})'
 
 
 class ServiceTime(models.Model):
@@ -40,4 +66,7 @@ class ServiceTime(models.Model):
     date = models.DateField(auto_now_add=True)
     days = models.PositiveIntegerField()
 
-    service = models.ForeignKey(Service, related_name='times', on_delete=models.CASCADE)
+    offering = models.ForeignKey(ServiceOffering, related_name='times', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'{self.date.isoformat()} - {str(self.offering)}'

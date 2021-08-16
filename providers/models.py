@@ -11,6 +11,9 @@ class Provider(models.Model):
     website = models.URLField(max_length=255)
     scraped_at = models.DateTimeField(blank=True, null=True)
 
+    def __str__(self):
+        return self.name
+
 
 class Location(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
@@ -21,3 +24,6 @@ class Location(models.Model):
     city = models.CharField(max_length=255)
 
     provider = models.ForeignKey(Provider, related_name='locations', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name

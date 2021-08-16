@@ -1,7 +1,7 @@
 from django.contrib.admin import register, ModelAdmin
 from modeltranslation.admin import TranslationAdmin
 
-from .models import ServiceAgeGroup, ServiceType, Service, ServiceTime
+from .models import ServiceAgeGroup, ServiceType, Service, ServiceOffering, ServiceTime
 
 
 @register(ServiceAgeGroup)
@@ -18,11 +18,17 @@ class ServiceTypeAdmin(TranslationAdmin):
 
 @register(Service)
 class ServiceAdmin(TranslationAdmin):
-    list_display = ['id', 'provider', 'name', 'description', 'parent']
-    list_filter = ['provider', 'parent', 'age_groups', 'types']
+    list_display = ['id', 'name', 'description', 'parent']
+    list_filter = ['parent']
+
+
+@register(ServiceOffering)
+class ServiceOfferingAdmin(TranslationAdmin):
+    list_display = ['id', 'provider', 'service']
+    list_filter = ['provider', 'service', 'age_groups', 'types']
 
 
 @register(ServiceTime)
 class ServiceTimeAdmin(ModelAdmin):
-    list_display = ['id', 'service', 'date', 'days']
-    list_filter = ['service', 'date']
+    list_display = ['id', 'offering', 'date', 'days']
+    list_filter = ['offering', 'date']
