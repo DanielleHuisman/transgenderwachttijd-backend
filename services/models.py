@@ -30,6 +30,10 @@ class Service(models.Model):
     types = models.ManyToManyField(ServiceType, related_name='services', blank=True)
 
 
+# TODO: Services should generic with a many-to-many relationship to providers.
+#       The age_groups and types fields should move to the join table. Additionally, the join table should have a field for provider specific notes about the service.
+
+
 class ServiceTime(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
 
