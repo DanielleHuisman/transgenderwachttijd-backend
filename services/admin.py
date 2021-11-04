@@ -18,7 +18,7 @@ class ServiceTypeAdmin(TranslationAdmin):
 
 @register(Service)
 class ServiceAdmin(TranslationAdmin):
-    list_display = ['id', 'name', 'description', 'parent']
+    list_display = ['id', 'name', 'medical_name', 'description', 'parent']
     list_filter = ['parent']
 
 

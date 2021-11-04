@@ -15,7 +15,7 @@ class ServiceTypeTranslationOptions(TranslationOptions):
 
 @register(Service)
 class ServiceTranslationOptions(TranslationOptions):
-    fields = ('name', 'description')
+    fields = ('name', 'medical_name', 'description')
 
 
 @register(ServiceOffering)

@@ -27,9 +27,10 @@ class Service(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
 
     name = models.CharField(max_length=255, unique=True)
+    medical_name = models.CharField(max_length=255, unique=True, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
-    parent = models.ForeignKey(Provider, related_name='children', on_delete=models.CASCADE, blank=True, null=True)
+    parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
     dependencies = models.ManyToManyField('self', related_name='dependants', blank=True)
 
     def __str__(self):

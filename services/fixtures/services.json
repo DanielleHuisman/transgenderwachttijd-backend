@@ -1,47 +1,475 @@
 [
-  {
-    "model": "services.serviceagegroup",
-    "pk": "0882bf40-b027-45d1-b231-53eb28787eac",
-    "fields": {
-      "name": "Adolescents",
-      "name_en": "Adolescents",
-      "name_nl": "Adolescenten"
+    {
+        "model": "services.serviceagegroup",
+        "pk": "0882bf40-b027-45d1-b231-53eb28787eac",
+        "fields": {
+            "name": "Adolescents",
+            "name_en": "Adolescents",
+            "name_nl": "Adolescenten"
+        }
+    },
+    {
+        "model": "services.serviceagegroup",
+        "pk": "288dd530-5b13-4043-b495-208e0ffa3cc1",
+        "fields": {
+            "name": "Adults",
+            "name_en": "Adults",
+            "name_nl": "Volwassenen"
+        }
+    },
+    {
+        "model": "services.serviceagegroup",
+        "pk": "9e07513a-39b4-480a-bdac-2b3653ef6923",
+        "fields": {
+            "name": "Children",
+            "name_en": "Children",
+            "name_nl": "Kinderen"
+        }
+    },
+    {
+        "model": "services.servicetype",
+        "pk": "0641997a-5ff4-4e3d-8c3b-53b43113a707",
+        "fields": {
+            "name": "Transmasculine",
+            "name_en": "Transmasculine",
+            "name_nl": "Transmannelijk"
+        }
+    },
+    {
+        "model": "services.servicetype",
+        "pk": "49c24e4f-8f2d-4023-a741-e99ea96e46de",
+        "fields": {
+            "name": "Transfeminine",
+            "name_en": "Transfeminine",
+            "name_nl": "Transvrouwelijk"
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "1701d4d0-4925-43e7-baac-c5eae7eae21a",
+        "fields": {
+            "name": "Speech therapy",
+            "name_en": "Speech therapy",
+            "name_nl": "Logopedie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": null,
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "1c190ec9-ae93-4127-a6ed-2b5b1fdb515b",
+        "fields": {
+            "name": "Tracheal shave",
+            "name_en": "Tracheal shave",
+            "name_nl": "Adamsappelreductie",
+            "medical_name": "Chondrolaryngoplasty",
+            "medical_name_en": "Chondrolaryngoplasty",
+            "medical_name_nl": "Chondrolaryngoplastiek",
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "38f86afd-3967-40b7-88eb-d1232ff968aa",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "2469e77b-a5d0-47da-9fb1-979196336c6b",
+        "fields": {
+            "name": "Hormone therapy",
+            "name_en": "Hormone therapy",
+            "name_nl": "Hormoonbehandeling",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "54014229-5e02-477f-998d-5546f9fde14c",
+            "dependencies": [
+                "b5a07c84-feb3-4af2-bd2b-cbb5c4209f4c"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "246bc443-7d5b-41c2-8144-23a725fab3a6",
+        "fields": {
+            "name": "Breast augmentation",
+            "name_en": "Breast augmentation",
+            "name_nl": "Borstvergroting",
+            "medical_name": "Augmentation mammoplasty",
+            "medical_name_en": "Augmentation mammoplasty",
+            "medical_name_nl": "Mamma-augmentatie",
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "7e85c90b-de74-4698-b958-42596b03d87b",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "256c1bab-f8ff-4026-b2c2-ce96a76495d0",
+        "fields": {
+            "name": "Colpectomy",
+            "name_en": "Colpectomy",
+            "name_nl": "Colpectomie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": [
+                "337e1f39-64ee-43ff-b946-8f9032dbff26",
+                "efd84aaf-f329-4851-9a0b-6e9db65a8082"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "2784f7ed-44b9-4794-a2d6-bfe2cd2bd4c4",
+        "fields": {
+            "name": "Voice altering surgery",
+            "name_en": "Voice altering surgery",
+            "name_nl": "Stemveranderingsoperatie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "38f86afd-3967-40b7-88eb-d1232ff968aa",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "2ef27056-e178-4095-9233-0a89c00a36a0",
+        "fields": {
+            "name": "Genitals",
+            "name_en": "Genitals",
+            "name_nl": "Geslachtsdelen",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "ff8b6e95-8524-4d53-a103-002d1f2a5eb3",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "337e1f39-64ee-43ff-b946-8f9032dbff26",
+        "fields": {
+            "name": "Phalloplasty",
+            "name_en": "Phalloplasty",
+            "name_nl": "Phalloplastiek",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": [
+                "256c1bab-f8ff-4026-b2c2-ce96a76495d0"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "38f86afd-3967-40b7-88eb-d1232ff968aa",
+        "fields": {
+            "name": "Throat",
+            "name_en": "Throat",
+            "name_nl": "Keel",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "ff8b6e95-8524-4d53-a103-002d1f2a5eb3",
+            "dependencies": [
+                "ff8b6e95-8524-4d53-a103-002d1f2a5eb3"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "3d403ca2-0b90-40f3-92c6-d6586e459c1c",
+        "fields": {
+            "name": "Face",
+            "name_en": "Face",
+            "name_nl": "Gezicht",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "ff8b6e95-8524-4d53-a103-002d1f2a5eb3",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "3e681476-35ce-489e-880e-dc3f200bab65",
+        "fields": {
+            "name": "Mastectomy",
+            "name_en": "Mastectomy",
+            "name_nl": "Mastectomie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "7e85c90b-de74-4698-b958-42596b03d87b",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "54014229-5e02-477f-998d-5546f9fde14c",
+        "fields": {
+            "name": "Endocrinology",
+            "name_en": "Endocrinology",
+            "name_nl": "Endocrinologie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": null,
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "6dda6f27-d6a6-47d3-8df2-33074308b47b",
+        "fields": {
+            "name": "Secondary corrections",
+            "name_en": "Secondary corrections",
+            "name_nl": "Secundaire correcties",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "7a9c3340-3096-4e49-a397-aab8cc92c250",
+        "fields": {
+            "name": "Orchidectomy",
+            "name_en": "Orchidectomy",
+            "name_nl": "Orchidectomie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "7e85c90b-de74-4698-b958-42596b03d87b",
+        "fields": {
+            "name": "Chest",
+            "name_en": "Chest",
+            "name_nl": "Borst",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "ff8b6e95-8524-4d53-a103-002d1f2a5eb3",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "8e3baa50-445c-431b-99ca-e6b6e41099d3",
+        "fields": {
+            "name": "Vaginoplasty",
+            "name_en": "Vaginoplasty",
+            "name_nl": "Vaginaplastiek",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "b2f64e05-ad1a-43d5-bc15-8040d997b658",
+        "fields": {
+            "name": "Psychology",
+            "name_en": "Psychology",
+            "name_nl": "Psychologie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": null,
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "b5a07c84-feb3-4af2-bd2b-cbb5c4209f4c",
+        "fields": {
+            "name": "Diagnostics",
+            "name_en": "Diagnostics",
+            "name_nl": "Diagnostiek",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "b2f64e05-ad1a-43d5-bc15-8040d997b658",
+            "dependencies": [
+                "2469e77b-a5d0-47da-9fb1-979196336c6b",
+                "cf93a563-9c03-4fb6-aa4d-9a5926811fd1",
+                "ff8b6e95-8524-4d53-a103-002d1f2a5eb3"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "cf93a563-9c03-4fb6-aa4d-9a5926811fd1",
+        "fields": {
+            "name": "Intake",
+            "name_en": "Intake",
+            "name_nl": "Intake",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "b2f64e05-ad1a-43d5-bc15-8040d997b658",
+            "dependencies": [
+                "b5a07c84-feb3-4af2-bd2b-cbb5c4209f4c"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "dc6acca8-e054-48ae-b83e-681c07e24b11",
+        "fields": {
+            "name": "Hysterectomy",
+            "name_en": "Hysterectomy",
+            "name_nl": "Hysterectomie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "e40dacbc-70af-490f-84f3-4a13a8dcb537",
+        "fields": {
+            "name": "Facial surgery",
+            "name_en": "Facial surgery",
+            "name_nl": "Aangezichtschirurgie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "3d403ca2-0b90-40f3-92c6-d6586e459c1c",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "e5aa102d-10fc-4fb5-a5e9-1793dda2df1a",
+        "fields": {
+            "name": "Colovaginoplasty",
+            "name_en": "Colovaginoplasty",
+            "name_nl": "Colovaginoplastiek",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": []
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "efd84aaf-f329-4851-9a0b-6e9db65a8082",
+        "fields": {
+            "name": "Metaidoioplasty",
+            "name_en": "Metaidoioplasty",
+            "name_nl": "Metaïdoioplastiek",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": "2ef27056-e178-4095-9233-0a89c00a36a0",
+            "dependencies": [
+                "256c1bab-f8ff-4026-b2c2-ce96a76495d0"
+            ]
+        }
+    },
+    {
+        "model": "services.service",
+        "pk": "ff8b6e95-8524-4d53-a103-002d1f2a5eb3",
+        "fields": {
+            "name": "Surgery",
+            "name_en": "Surgery",
+            "name_nl": "Chirurgie",
+            "medical_name": null,
+            "medical_name_en": null,
+            "medical_name_nl": null,
+            "description": null,
+            "description_en": null,
+            "description_nl": null,
+            "parent": null,
+            "dependencies": [
+                "38f86afd-3967-40b7-88eb-d1232ff968aa",
+                "b5a07c84-feb3-4af2-bd2b-cbb5c4209f4c"
+            ]
+        }
     }
-  },
-  {
-    "model": "services.serviceagegroup",
-    "pk": "288dd530-5b13-4043-b495-208e0ffa3cc1",
-    "fields": {
-      "name": "Adults",
-      "name_en": "Adults",
-      "name_nl": "Volwassenen"
-    }
-  },
-  {
-    "model": "services.serviceagegroup",
-    "pk": "9e07513a-39b4-480a-bdac-2b3653ef6923",
-    "fields": {
-      "name": "Children",
-      "name_en": "Children",
-      "name_nl": "Kinderen"
-    }
-  },
-  {
-    "model": "services.servicetype",
-    "pk": "0641997a-5ff4-4e3d-8c3b-53b43113a707",
-    "fields": {
-      "name": "Transmasculine",
-      "name_en": "Transmasculine",
-      "name_nl": "Transmannelijk"
-    }
-  },
-  {
-    "model": "services.servicetype",
-    "pk": "49c24e4f-8f2d-4023-a741-e99ea96e46de",
-    "fields": {
-      "name": "Transfeminine",
-      "name_en": "Transfeminine",
-      "name_nl": "Transvrouwelijk"
-    }
-  }
 ]
