@@ -16,11 +16,14 @@ SERVICES = [
 
 class ScraperPsyTrans(Scraper):
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
+        return 'psytrans'
+
+    def get_source_url(self):
         return 'https://psytrans.nl/werkwijze/'
 
     def scrape(self):
-        text = self.fetch_page(self.source_url())
+        text = self.fetch_page(self.get_source_url())
 
         has_stop = False
         for stop_regex in STOP_REGEXES:

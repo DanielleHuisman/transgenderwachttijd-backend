@@ -1,17 +1,34 @@
 from io import BytesIO
+from typing import Optional, TypedDict
 
 import requests
 from bs4 import BeautifulSoup
 
 from ..util import PDFReader
 
+TF = 'Transfeminine'
+TM = 'Transmasculine'
+CHILDREN = 'Children'
+ADOLESCENTS = 'Adolescents'
+ADULTS = 'Adults'
+
+
+class ScraperServiceTime(TypedDict):
+    service: str
+    types: list[str]
+    age_groups: list[str]
+    days: Optional[int]
+
 
 class Scraper:
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
         raise NotImplementedError()
 
-    def scrape(self):
+    def get_source_url(self) -> str:
+        raise NotImplementedError()
+
+    def scrape(self) -> list[ScraperServiceTime]:
         raise NotImplementedError()
 
     def fetch(self, url: str, **kwargs):

@@ -6,11 +6,14 @@ from .base import Scraper
 
 class ScraperUMCG(Scraper):
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
+        return 'umcg'
+
+    def get_source_url(self) -> str:
         return 'https://www.umcg.nl/NL/Zorg/Volwassenen/Wachttijden/Paginas/Genderteam.aspx'
 
     def scrape(self):
-        soup = self.fetch_html_page(self.source_url())
+        soup = self.fetch_html_page(self.get_source_url())
 
         table = soup.find('table', class_='ms-rteTable-UMCG')
         table_body = table.tbody

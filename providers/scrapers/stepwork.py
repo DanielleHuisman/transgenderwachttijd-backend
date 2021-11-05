@@ -8,11 +8,14 @@ WEEKS_REGEX = re.compile(r'(\d+) weken', re.IGNORECASE)
 
 class ScraperStepwork(Scraper):
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
+        return 'stepwork'
+
+    def get_source_url(self) -> str:
         return 'https://stepwork.nl/wachttijden/'
 
     def scrape(self):
-        soup = self.fetch_html_page(self.source_url())
+        soup = self.fetch_html_page(self.get_source_url())
 
         link = soup.find(class_='customize-unpreviewable', href=HREF_REGEX)['href']
 

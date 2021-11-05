@@ -8,11 +8,14 @@ WEEKS_REGEX = re.compile(r'(\d+) wk', re.IGNORECASE)
 
 class ScraperDeVaart(Scraper):
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
+        return 'devaart'
+
+    def get_source_url(self) -> str:
         return 'https://psychologenpraktijkdevaart.nl/praktijkinfo/wachtlijst-bggz-en-sggz/'
 
     def scrape(self):
-        soup = self.fetch_html_page(self.source_url())
+        soup = self.fetch_html_page(self.get_source_url())
 
         tables = soup.find_all('table')
         table = tables[2]
