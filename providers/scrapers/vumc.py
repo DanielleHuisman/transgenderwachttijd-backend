@@ -3,6 +3,7 @@ from typing import TypedDict
 
 from .base import Scraper, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
+INDIVIDUAL_TEXT = 'individueel'
 TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
 
 
@@ -164,20 +165,25 @@ class ScraperVUmc(Scraper):
             print(name)
             if result:
                 print(result)
+                is_individual = INDIVIDUAL_TEXT in result
                 times = TIME_REGEX.search(result)
                 if times:
                     days = int(times.group(1))
                     weeks = int(times.group(2))
-
-                    print(days, 'days')
-                    print(weeks, 'weeks')
-
-                    # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
-                    service_time: ScraperServiceTime = service['offering'].copy()
-                    service_time['days'] = days
-                    service_times.append(service_time)
                 else:
                     print('no match')
+                    days = None
+                    weeks = None
+
+                print(days, 'days')
+                print(weeks, 'weeks')
+                print('individual',  is_individual)
+
+                # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
+                service_time: ScraperServiceTime = service['offering'].copy()
+                service_time['days'] = days
+                service_time['is_individual'] = is_individual
+                service_times.append(service_time)
             else:
                 print('no result')
             print()

@@ -18,6 +18,7 @@ class ScraperServiceTime(TypedDict):
     types: list[str]
     age_groups: list[str]
     days: Optional[int]
+    is_individual: bool
 
 
 class Scraper:
