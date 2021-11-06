@@ -28,4 +28,4 @@ def test(scraper_name: str):
     print(scraper.scrape())
 
 
-test('vumc')
+test('umcg')

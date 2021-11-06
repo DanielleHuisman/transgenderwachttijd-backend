@@ -1,7 +1,7 @@
 import re
 from typing import TypedDict
 
-from .base import Scraper, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
+from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
 INDIVIDUAL_TEXT = 'individueel'
 TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
@@ -9,7 +9,7 @@ TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
 
 class ScraperServiceVUmc(TypedDict):
     match: tuple[str, str, str]
-    offering: ScraperServiceTime
+    offering: ScraperServiceOffering
 
 
 SERVICES: list[ScraperServiceVUmc] = [{
@@ -181,8 +181,9 @@ class ScraperVUmc(Scraper):
 
                 # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
                 service_time: ScraperServiceTime = service['offering'].copy()
-                service_time['days'] = days
+                service_time['days'] = None if is_individual else days
                 service_time['is_individual'] = is_individual
+                service_time['has_stop'] = False
                 service_times.append(service_time)
             else:
                 print('no result')

@@ -13,12 +13,16 @@ ADOLESCENTS = 'Adolescents'
 ADULTS = 'Adults'
 
 
-class ScraperServiceTime(TypedDict):
+class ScraperServiceOffering(TypedDict):
     service: str
     types: list[str]
     age_groups: list[str]
+
+
+class ScraperServiceTime(ScraperServiceOffering):
     days: Optional[int]
     is_individual: bool
+    has_stop: bool
 
 
 class Scraper:
