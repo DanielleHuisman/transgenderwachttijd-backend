@@ -1,6 +1,7 @@
 from providers.scrapers.base import Scraper
 from providers.scrapers.devaart import ScraperDeVaart
 from providers.scrapers.jonx import ScraperJonx
+from providers.scrapers.oog import ScraperOOG
 from providers.scrapers.psytrans import ScraperPsyTrans
 from providers.scrapers.radboudumc import ScraperRadboudumc
 from providers.scrapers.stepwork import ScraperStepwork
@@ -15,6 +16,8 @@ def test(scraper_name: str):
         scraper = ScraperDeVaart()
     elif scraper_name == 'jonx':
         scraper = ScraperJonx()
+    elif scraper_name == 'oog':
+        scraper = ScraperOOG()
     elif scraper_name == 'psytrans':
         scraper = ScraperPsyTrans()
     elif scraper_name == 'radboudumc':
@@ -31,4 +34,4 @@ def test(scraper_name: str):
     print(scraper.scrape())
 
 
-test('jonx')
+test('oog')

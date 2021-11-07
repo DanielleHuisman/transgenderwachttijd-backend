@@ -36,13 +36,17 @@ class Scraper:
     def scrape(self) -> list[ScraperServiceTime]:
         raise NotImplementedError()
 
-    def fetch(self, url: str, **kwargs):
-        response = requests.get(url, **kwargs)
+    def fetch(self, url: str, headers=None, **kwargs):
+        response = requests.get(url, headers={
+            **({} if headers is None else headers),
+            'User-Agent': 'transgenderwachttijd.nl'
+        }, **kwargs)
 
         if 200 <= response.status_code <= 299:
             return response
         if 400 <= response.status_code <= 599:
             # TODO: improve error handling
+            print(response)
             raise Exception('Failed to fetch page')
         else:
             raise Exception(f'Unable to handle status code {response.status_code}')
