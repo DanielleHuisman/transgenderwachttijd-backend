@@ -1,6 +1,7 @@
 import re
+from typing import TypedDict
 
-from .base import Scraper
+from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
 STOP_REGEXES = [
     re.compile(r'aanmeldstop hanteren', re.IGNORECASE),
@@ -8,19 +9,39 @@ STOP_REGEXES = [
 ]
 WEEKS_REGEX = re.compile(r'(\d+) weken', re.IGNORECASE)
 
-SERVICES = [
-    ('Intake', 'intake na aanmelding', '</p>'),
-    ('Behandeling', 'behandeling na intake', '</p>')
-]
+
+class ScraperServicePsyTrans(TypedDict):
+    match: tuple[str, str, str]
+    offering: ScraperServiceOffering
+
+
+SERVICES: list[ScraperServicePsyTrans] = [{
+    'match': ('Intake', 'intake na aanmelding', '</p>'),
+    'offering': {
+        'service': 'Intake',
+        'types': [TF, TM],
+        'age_groups': [CHILDREN, ADOLESCENTS, ADULTS]
+    }
+}, {
+    'match': ('Behandeling', 'behandeling na intake', '</p>'),
+    'offering': {
+        'service': 'Diagnostics',
+        'types': [TF, TM],
+        'age_groups': [CHILDREN, ADOLESCENTS, ADULTS]
+    }
+}]
 
 
 class ScraperPsyTrans(Scraper):
 
-    def source_url(self):
+    def get_provider_handle(self) -> str:
+        return 'psytrans'
+
+    def get_source_url(self):
         return 'https://psytrans.nl/werkwijze/'
 
-    def scrape(self):
-        text = self.fetch_page(self.source_url())
+    def scrape(self) -> list[ScraperServiceTime]:
+        text = self.fetch_page(self.get_source_url())
 
         has_stop = False
         for stop_regex in STOP_REGEXES:
@@ -28,9 +49,11 @@ class ScraperPsyTrans(Scraper):
             if has_stop:
                 break
 
-        waiting_times = []
+        service_times: list[ScraperServiceTime] = []
 
-        for (name, start, end) in SERVICES:
+        for service in SERVICES:
+            (name, start, end) = service['match']
+
             start_index = text.find(start)
             end_index = text.find(end, start_index)
 
@@ -42,10 +65,11 @@ class ScraperPsyTrans(Scraper):
             print(name)
             print(f'{weeks} weken')
 
-            waiting_times.append({
-                'name': name,
-                'weeks': weeks
-            })
+            # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
+            service_time: ScraperServiceTime = service['offering'].copy()
+            service_time['days'] = weeks * 7
+            service_time['is_individual'] = False
+            service_time['has_stop'] = has_stop
+            service_times.append(service_time)
 
-        print(waiting_times)
-        print(f'Has stop: {has_stop}')
+        return service_times

@@ -1,0 +1,236 @@
+[
+    {
+        "model": "providers.provider",
+        "pk": "293f4160-462f-4f49-9394-0c0a8bd628ca",
+        "fields": {
+            "name": "Psychologenpraktijk De Vaart",
+            "slug": "de-vaart",
+            "website": "https://psychologenpraktijkdevaart.nl/transgenderzorg/",
+            "scraped_at": "2021-11-07T15:23:26.311Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "44006a5f-8ab3-4a9c-abc1-b230a82a329b",
+        "fields": {
+            "name": "Radboucumc",
+            "slug": "radboudumc",
+            "website": "https://www.radboudumc.nl/expertisecentra/geslacht-en-gender/waarvoor-kunt-u-bij-ons-terecht/transgenderzorg",
+            "scraped_at": "2021-11-07T15:23:28.211Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "5cd54263-a72c-4d87-9511-20abc796a970",
+        "fields": {
+            "name": "Amsterdam UMC",
+            "slug": "amsterdam-umc",
+            "website": "https://www.vumc.nl/zorg/expertisecentra-en-specialismen/kennis-en-zorgcentrum-genderdysforie.htm",
+            "scraped_at": "2021-11-07T15:23:30.134Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "78192578-19e5-4204-bbaf-653b52845d22",
+        "fields": {
+            "name": "Jonx",
+            "slug": "jonx",
+            "website": "https://www.jonx.nl/probleem/genderdysforie/",
+            "scraped_at": "2021-11-07T15:23:26.417Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "8cb7aecf-ed4e-485b-8af7-80a1cfaef09a",
+        "fields": {
+            "name": "Stepwork",
+            "slug": "stepwork",
+            "website": "https://stepwork.nl/transgenderzorg-1/",
+            "scraped_at": "2021-11-07T15:23:28.550Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "9bf8c99a-461e-4e9b-8a6a-198c6fc9579b",
+        "fields": {
+            "name": "OOG Psychologen",
+            "slug": "oog",
+            "website": "https://oogpsychologen.nl/behandelingen/gender/",
+            "scraped_at": "2021-11-07T15:23:27.669Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "a90d9792-a5a3-46a5-b6d4-a1000b205479",
+        "fields": {
+            "name": "PsyTrans",
+            "slug": "psytrans",
+            "website": "https://psytrans.nl",
+            "scraped_at": "2021-11-07T15:23:28.052Z"
+        }
+    },
+    {
+        "model": "providers.provider",
+        "pk": "dfdcb0cf-96e6-48b3-9098-48ecafae4a87",
+        "fields": {
+            "name": "UMC Groningen",
+            "slug": "umcg",
+            "website": "https://www.umcg.nl/-/genderdysforie",
+            "scraped_at": "2021-11-07T15:23:29.328Z"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "00ffa957-8001-4fae-9343-d9ac314a8a1b",
+        "fields": {
+            "name": "Jonx Genderpoli Groningen",
+            "address": "Laan Corpus den Hoorn 102-2",
+            "postal_code": "9728JR",
+            "city": "Groningen",
+            "provider": "78192578-19e5-4204-bbaf-653b52845d22"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "2844dc02-3580-4ad5-8f49-62bdfbfcd42e",
+        "fields": {
+            "name": "Stepwork Blijham",
+            "address": "Tjabbesstreek 28",
+            "postal_code": "9697XL",
+            "city": "Blijham",
+            "provider": "8cb7aecf-ed4e-485b-8af7-80a1cfaef09a"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "46d3c0a7-a3c9-4435-8c44-b160b9e157c7",
+        "fields": {
+            "name": "Stepwork Rotterdam",
+            "address": "Wijnhaven 36",
+            "postal_code": "3011WS",
+            "city": "Rotterdam",
+            "provider": "8cb7aecf-ed4e-485b-8af7-80a1cfaef09a"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "5020a0ab-73e3-4cfd-85cd-4e9013213d06",
+        "fields": {
+            "name": "Psychologenpraktijk De Vaart Zwolle",
+            "address": "Bloemendalstraat 7",
+            "postal_code": "8011PJ",
+            "city": "Zwolle",
+            "provider": "293f4160-462f-4f49-9394-0c0a8bd628ca"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "8403fc1f-5c02-4d75-a6a9-69c940bf3e17",
+        "fields": {
+            "name": "Stepwork Amersfoort",
+            "address": "Algolweg 9A",
+            "postal_code": "3812BG",
+            "city": "Amersfoort",
+            "provider": "8cb7aecf-ed4e-485b-8af7-80a1cfaef09a"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "87999967-76d9-480c-8f2b-cef2b0903822",
+        "fields": {
+            "name": "PsyTrans Groningen",
+            "address": "Friesestraatweg 24-2",
+            "postal_code": "9718NJ",
+            "city": "Groningen",
+            "provider": "a90d9792-a5a3-46a5-b6d4-a1000b205479"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "92a4a342-4c69-4218-ba5e-c665ed4b12af",
+        "fields": {
+            "name": "OOG Psychologen Eindhoven",
+            "address": "Bogert 10",
+            "postal_code": "5612LZ",
+            "city": "Eindhoven",
+            "provider": "9bf8c99a-461e-4e9b-8a6a-198c6fc9579b"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "a0942c8d-a8c9-41f7-9e53-9fa7b4a3abcb",
+        "fields": {
+            "name": "Radboudumc",
+            "address": "Geert Grooteplein Zuid 10",
+            "postal_code": "6525GA",
+            "city": "Nijmegen",
+            "provider": "44006a5f-8ab3-4a9c-abc1-b230a82a329b"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "b698a54c-93d4-49e9-ba32-736baae34012",
+        "fields": {
+            "name": "Psychologenpraktijk De Vaart Assen",
+            "address": "Vaart Zuidzijde 37-39",
+            "postal_code": "9401GG",
+            "city": "Assen",
+            "provider": "293f4160-462f-4f49-9394-0c0a8bd628ca"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "c3af7546-5e6b-4718-884d-0df3bad3a486",
+        "fields": {
+            "name": "Amsterdam UMC - VUmc",
+            "address": "De Boelelaan 1117",
+            "postal_code": "1081HV",
+            "city": "Amsterdam",
+            "provider": "5cd54263-a72c-4d87-9511-20abc796a970"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "d1019a13-9687-4f43-9e64-b7b3fa7b1776",
+        "fields": {
+            "name": "UMC Groningen",
+            "address": "Hanzeplein 1",
+            "postal_code": "9713GZ",
+            "city": "Groningen",
+            "provider": "dfdcb0cf-96e6-48b3-9098-48ecafae4a87"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "d1675ad6-55a6-412c-ab55-15e721a12d7e",
+        "fields": {
+            "name": "Stepwork Assen",
+            "address": "Overcingellaan 13C",
+            "postal_code": "9401LA",
+            "city": "Assen",
+            "provider": "8cb7aecf-ed4e-485b-8af7-80a1cfaef09a"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "e0ad8d82-fe54-4047-8d47-e613468c819b",
+        "fields": {
+            "name": "OOG Psychologen Helmond",
+            "address": "Kasteel-Traverse 82A",
+            "postal_code": "5701NR",
+            "city": "Helmond",
+            "provider": "9bf8c99a-461e-4e9b-8a6a-198c6fc9579b"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "f0bcbf15-21cc-4b2c-b117-8340a5e4e1ba",
+        "fields": {
+            "name": "PsyTrans Apeldoorn",
+            "address": "Molenmakershoek 17",
+            "postal_code": "7328JK",
+            "city": "Apeldoorn",
+            "provider": "a90d9792-a5a3-46a5-b6d4-a1000b205479"
+        }
+    }
+]

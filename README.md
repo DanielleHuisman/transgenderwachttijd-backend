@@ -2,6 +2,12 @@
 
 Website which displays the current waiting times for transgender care in the Netherlands.
 
+This project consists of two repositories:
+- [Backend](https://github.com/DanielHuisman/transgenderwachttijd-backend)
+- [Frontend](https://github.com/DanielHuisman/transgenderwachttijd-frontend)
+
+# Backend
+
 ## Development
 ### Prerequisites
 Make sure Python 3, pip, PyCharm and Pipenv are installed on your system.
