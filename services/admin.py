@@ -24,8 +24,18 @@ class ServiceAdmin(TranslationAdmin):
 
 @register(ServiceOffering)
 class ServiceOfferingAdmin(TranslationAdmin):
-    list_display = ['id', 'provider', 'service']
+    list_display = ['id', 'provider', 'service', 'age_groups_str', 'types_str']
     list_filter = ['provider', 'service', 'age_groups', 'types']
+
+    def age_groups_str(self, offering: ServiceOffering):
+        if offering.age_groups.count() == ServiceAgeGroup.objects.count():
+            return 'All groups'
+        return ', '.join([str(age_group) for age_group in offering.age_groups.all()])
+
+    def types_str(self, offering: ServiceOffering):
+        if offering.types.count() == ServiceType.objects.count():
+            return 'All types'
+        return ', '.join([str(service_type) for service_type in offering.types.all()])
 
 
 @register(ServiceTime)
