@@ -30,5 +30,5 @@ class ServiceOfferingAdmin(TranslationAdmin):
 
 @register(ServiceTime)
 class ServiceTimeAdmin(ModelAdmin):
-    list_display = ['id', 'offering', 'date', 'days']
-    list_filter = ['offering', 'date']
+    list_display = ['id', 'offering', 'date', 'days', 'is_individual', 'has_stop']
+    list_filter = ['offering', 'date', 'is_individual', 'has_stop']

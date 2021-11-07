@@ -21,4 +21,3 @@ urlpatterns = i18n_patterns(
     path('', include('providers.urls')),
     path('admin/', admin.site.urls),
 )
-print(urlpatterns)

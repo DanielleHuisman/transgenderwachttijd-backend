@@ -39,7 +39,7 @@ SERVICES: list[ScraperServiceDeVaart] = [{
 class ScraperDeVaart(Scraper):
 
     def get_provider_handle(self) -> str:
-        return 'devaart'
+        return 'de-vaart'
 
     def get_source_url(self) -> str:
         return 'https://psychologenpraktijkdevaart.nl/praktijkinfo/wachtlijst-bggz-en-sggz/'

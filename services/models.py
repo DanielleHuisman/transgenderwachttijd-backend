@@ -48,6 +48,8 @@ class ServiceOffering(models.Model):
     types = models.ManyToManyField(ServiceType, related_name='offerings', blank=True)
 
     def __str__(self):
+        service_name = self.service.medical_name if self.service.medical_name else self.service.name
+
         if self.age_groups.count() == ServiceAgeGroup.objects.count():
             age_groups = 'All groups'
         else:
@@ -58,14 +60,16 @@ class ServiceOffering(models.Model):
         else:
             types = ', '.join([str(service_type) for service_type in self.types.all()])
 
-        return f'{self.provider.name} - {self.service.name} ({age_groups} | {types})'
+        return f'{self.provider.name} - {service_name} ({age_groups} | {types})'
 
 
 class ServiceTime(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
 
     date = models.DateField(auto_now_add=True)
-    days = models.PositiveIntegerField()
+    days = models.PositiveIntegerField(blank=True, null=True)
+    is_individual = models.BooleanField()
+    has_stop = models.BooleanField()
 
     offering = models.ForeignKey(ServiceOffering, related_name='times', on_delete=models.CASCADE)
 

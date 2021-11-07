@@ -50,14 +50,14 @@ SERVICES: list[ScraperServiceVUmc] = [{
 }, {
     'match': ('Vaginaplastiek', 'vaginaplastiek', 'darm vagina plastiek'),
     'offering': {
-        'service': 'Vaginoplasty',
+        'service': 'Vaginaplasty',
         'types': [TF],
         'age_groups': [ADULTS]
     }
 }, {
     'match': ('Darm vagina plastiek', 'darm vagina plastiek', 'borstvergroting'),
     'offering': {
-        'service': 'Colovaginoplasty',
+        'service': 'Colovaginaplasty',
         'types': [TF],
         'age_groups': [ADULTS]
     }
