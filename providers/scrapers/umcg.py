@@ -76,7 +76,7 @@ class ScraperUMCG(Scraper):
         return 'umcg'
 
     def get_source_url(self) -> str:
-        return 'https://www.umcg.nl/NL/Zorg/Volwassenen/Wachttijden/Paginas/Genderteam.aspx'
+        return 'https://www.umcg.nl/w/wachttijden-genderteam'
 
     def scrape(self) -> list[ScraperServiceTime]:
         soup = self.fetch_html_page(self.get_source_url())
