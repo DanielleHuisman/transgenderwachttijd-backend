@@ -76,23 +76,23 @@ class ScraperUMCG(Scraper):
         return 'umcg'
 
     def get_source_url(self) -> str:
-        return 'https://www.umcg.nl/NL/Zorg/Volwassenen/Wachttijden/Paginas/Genderteam.aspx'
+        return 'https://www.umcg.nl/w/wachttijden-genderteam'
 
     def scrape(self) -> list[ScraperServiceTime]:
         soup = self.fetch_html_page(self.get_source_url())
 
-        table = soup.find('table', class_='ms-rteTable-UMCG')
+        table = soup.find('table', {'data-wachttijden-articleid': True})
         table_body = table.tbody
         last_header: Optional[str] = None
 
         service_times: list[ScraperServiceTime] = []
 
-        for table_row in table_body.children:
+        for table_row in table_body.find_all('tr'):
             title = soup_find_string(table_row.th)
             if not title:
                 continue
 
-            is_header = table_row.th.strong is not None
+            is_header = table_row.th.em is None
             if is_header:
                 last_header = title
                 continue
@@ -102,7 +102,7 @@ class ScraperUMCG(Scraper):
 
             weeks: Optional[int] = None
             is_individual: bool = False
-            for table_column in table_row.children:
+            for table_column in table_row.find_all('td'):
                 content = soup_find_string(table_column)
                 if content:
                     if INDIVIDUAL_TEXT in content:

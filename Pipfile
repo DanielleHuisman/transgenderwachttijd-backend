@@ -11,13 +11,16 @@ beautifulsoup4 = "*"
 croniter = "*"
 django = "*"
 django-cors-headers = "*"
+django-filter = "*"
+django-modeltranslation = "*"
 django-q = {extras = ["sentry"], version = "*"}
+graphene-django = "==3.0.0b7"
+graphql-relay = "==3.1.0"
 gunicorn = "*"
 mysqlclient = "*"
 pdfreader = "*"
 python-dotenv = "*"
 requests = "*"
 sentry-sdk = "*"
-django-modeltranslation = "*"
 
 [dev-packages]

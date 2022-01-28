@@ -45,14 +45,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'modeltranslation',
+    'corsheaders',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_filters',
     'django_q',
-    'corsheaders',
+    'graphene_django',
     'providers.apps.ProvidersConfig',
     'services.apps.ServicesConfig'
 ]
