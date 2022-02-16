@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_q',
     'graphene_django',
+    'articles.apps.ArticlesConfig',
     'providers.apps.ProvidersConfig',
     'services.apps.ServicesConfig'
 ]
