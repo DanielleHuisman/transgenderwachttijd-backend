@@ -5,7 +5,7 @@ from .models import Provider, Location
 
 @register(Provider)
 class ProviderAdmin(ModelAdmin):
-    list_display = ['id', 'name', 'scraped_at']
+    list_display = ['id', 'name',  'website', 'scraped_at']
     list_filter = ['scraped_at']
 
 
