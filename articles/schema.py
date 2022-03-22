@@ -21,13 +21,13 @@ class Article(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     article_source = graphene.Field(ArticleSource, id=graphene.UUID())
-    article_sources = graphene.List(ArticleSource)
+    article_sources = graphene.NonNull(graphene.List(graphene.NonNull(ArticleSource)))
 
     article_source_feed = graphene.Field(ArticleSourceFeed, id=graphene.UUID())
-    article_source_feeds = graphene.List(ArticleSourceFeed)
+    article_source_feeds = graphene.NonNull(graphene.List(graphene.NonNull(ArticleSourceFeed)))
 
     article = graphene.Field(Article, id=graphene.UUID())
-    articles = graphene.List(Article)
+    articles = graphene.NonNull(graphene.List(graphene.NonNull(Article)))
 
     def resolve_article_source(self, _info, **kwargs):
         return models.ArticleSource.objects.get(id=kwargs['id'])

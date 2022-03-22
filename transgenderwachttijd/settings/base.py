@@ -61,6 +61,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -91,6 +92,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'transgenderwachttijd.wsgi.application'
+
+APPEND_SLASH = False
 
 
 # Database
@@ -173,7 +176,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:1234'
 ]
 
-CORS_ALLOW_CREDENTIALS = True
+CORS_ALLOW_CREDENTIALS = False
 
 
 # Session
