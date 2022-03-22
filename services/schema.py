@@ -31,10 +31,10 @@ class ServiceTime(DjangoObjectType):
 
 class Query(graphene.ObjectType):
     service_age_group = graphene.Field(ServiceAgeGroup, id=graphene.UUID())
-    service_age_groups = graphene.List(ServiceAgeGroup)
+    service_age_groups = graphene.NonNull(graphene.List(graphene.NonNull(ServiceAgeGroup)))
 
     service_type = graphene.Field(ServiceType, id=graphene.UUID())
-    service_types = graphene.List(ServiceType)
+    service_types = graphene.NonNull(graphene.List(graphene.NonNull(ServiceType)))
 
     def resolve_service_age_group(self, _info, **kwargs):
         return models.ServiceAgeGroup.objects.get(id=kwargs['id'])
