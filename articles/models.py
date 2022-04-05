@@ -35,8 +35,10 @@ class Article(models.Model):
     content = models.TextField(blank=True, null=True)
     published_at = models.DateTimeField(blank=True, null=True)
     image_url = models.URLField(max_length=255, blank=True, null=True)
+    keyword_count = models.PositiveIntegerField()
 
     source = models.ForeignKey(ArticleSource, related_name='articles', on_delete=models.CASCADE)
+    feeds = models.ManyToManyField(ArticleSourceFeed, related_name='articles', blank=True)
 
     def __str__(self):
         return f'{self.source.name} - {self.title}'
