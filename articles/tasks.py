@@ -28,6 +28,10 @@ def scrape_rss_feeds():
                 data = feedparser.parse(feed.url)
 
                 for entry in data.entries:
+                    if not hasattr(entry, 'published_parsed'):
+                        logger.warn(f'Entry "{entry.link}" of feed "{feed.url}" has no publication date, skipping.')
+                        continue
+
                     published_at = timezone.make_aware(datetime.utcfromtimestamp(timegm(entry.published_parsed)), timezone=pytz.utc)
 
                     # Check if the current and following entries can be skipped
