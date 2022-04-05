@@ -37,30 +37,42 @@ def scrape_rss_feeds():
                     # Check if this article already exists
                     article = Article.objects.filter(url=entry.link).first()
                     if article:
+                        article.feeds.add(feed)
                         break
 
-                    # Check if this article contains a keyword
+                    # Sanitize article title and description
                     title = entry.title.lower()
                     description = entry.description.lower() if entry.description else ''
+
+                    # Count keywords in article title and description
+                    keyword_count = 0
                     for keyword in KEYWORDS:
-                        if keyword in title or keyword in description:
-                            # Create article
-                            article = Article(
-                                url=entry.link,
-                                title=entry.title,
-                                content=entry.description,
-                                published_at=published_at,
-                                source=feed.source
-                            )
+                        keyword_count += title.count(keyword)
+                        keyword_count += description.count(keyword)
 
-                            # Find an image for this article if available
-                            for enclosure in entry.enclosures:
-                                if enclosure.type.startswith('image/'):
-                                    article.image_url = enclosure.href
-                                    break
+                    # Check if this article contains any keywords
+                    if keyword_count == 0:
+                        continue
 
-                            article.save()
+                    # Create article
+                    article = Article(
+                        url=entry.link,
+                        title=entry.title,
+                        content=entry.description,
+                        published_at=published_at,
+                        keyword_count=keyword_count,
+                        source=feed.source
+                    )
+
+                    # Find an image for this article if available
+                    for enclosure in entry.enclosures:
+                        if enclosure.type.startswith('image/'):
+                            article.image_url = enclosure.href
                             break
+
+                    # Save article and add article feed relation
+                    article.save()
+                    article.feeds.add(feed)
 
                 # Update feed
                 feed.scraped_at = timezone.now()
