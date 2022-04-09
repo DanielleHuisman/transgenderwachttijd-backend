@@ -18,8 +18,8 @@ class ArticleSourceAdmin(ModelAdmin):
 
 @register(ArticleSourceFeed)
 class ArticleSourceFeedAdmin(ModelAdmin):
-    list_display = ['id', 'source', 'name', 'url', 'scraped_at']
-    list_filter = ['source', 'scraped_at']
+    list_display = ['id', 'source', 'name', 'category', 'url', 'scraped_at']
+    list_filter = ['source', 'category', 'scraped_at']
 
 
 @register(Article)
