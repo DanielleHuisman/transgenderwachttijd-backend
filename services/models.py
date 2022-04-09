@@ -31,7 +31,7 @@ class Service(models.Model):
     description = models.TextField(blank=True, null=True)
 
     parent = models.ForeignKey('self', related_name='children', on_delete=models.CASCADE, blank=True, null=True)
-    dependencies = models.ManyToManyField('self', related_name='dependants', blank=True)
+    dependencies = models.ManyToManyField('self', related_name='dependants', symmetrical=False, blank=True)
 
     def __str__(self):
         return self.name

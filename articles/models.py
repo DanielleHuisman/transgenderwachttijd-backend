@@ -3,6 +3,19 @@ from uuid import uuid4
 from django.db import models
 
 
+class ArticleCategory(models.Model):
+    class Meta:
+        verbose_name_plural = 'Article categories'
+
+    id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
+
+    name = models.CharField(max_length=255, unique=True)
+    slug = models.CharField(max_length=255, unique=True)
+
+    def __str__(self):
+        return self.name
+
+
 class ArticleSource(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid4, editable=False)
 
@@ -22,6 +35,7 @@ class ArticleSourceFeed(models.Model):
     scraped_at = models.DateTimeField(blank=True, null=True)
 
     source = models.ForeignKey(ArticleSource, related_name='feeds', on_delete=models.CASCADE)
+    category = models.ForeignKey(ArticleCategory, related_name='feeds', on_delete=models.CASCADE)
 
     def __str__(self):
         return f'{self.source.name} - {self.name}'
