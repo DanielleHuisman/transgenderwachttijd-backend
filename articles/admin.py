@@ -1,6 +1,13 @@
 from django.contrib.admin import register, ModelAdmin
+from modeltranslation.admin import TranslationAdmin
 
-from .models import ArticleSource, ArticleSourceFeed, Article
+from .models import ArticleCategory, ArticleSource, ArticleSourceFeed, Article
+
+
+@register(ArticleCategory)
+class ArticleCategoryAdmin(TranslationAdmin):
+    list_display = ['id', 'name', 'slug']
+    list_filter = []
 
 
 @register(ArticleSource)
