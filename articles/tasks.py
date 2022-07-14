@@ -28,6 +28,9 @@ def scrape_rss_feeds():
                 data = feedparser.parse(feed.url)
 
                 for entry in data.entries:
+                    if not hasattr(entry, 'link'):
+                        logger.warn(f'Entry of feed "{feed.url}" has no link, skipping.')
+                        continue
                     if not hasattr(entry, 'published_parsed'):
                         logger.warn(f'Entry "{entry.link}" of feed "{feed.url}" has no publication date, skipping.')
                         continue
