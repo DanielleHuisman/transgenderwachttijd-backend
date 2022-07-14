@@ -16,6 +16,7 @@ django-modeltranslation = "*"
 django-q = {extras = ["sentry"], version = "*"}
 feedparser = "*"
 graphene-django = "==3.0.0b7"
+graphql-core = "==3.1.7"
 graphql-relay = "==3.1.0"
 gunicorn = "*"
 mysqlclient = "*"
