@@ -1,21 +1,14 @@
-import graphene
+import strawberry
+from strawberry.tools import merge_types
 
 import articles.schema
 import providers.schema
 import services.schema
 
-
-class Query(
+Query = merge_types('Query', (
     articles.schema.Query,
     providers.schema.Query,
     services.schema.Query,
-    graphene.ObjectType
-):
-    pass
+))
 
-
-# class Mutation(graphene.ObjectType):
-#     pass
-
-
-schema = graphene.Schema(query=Query)
+schema = strawberry.Schema(query=Query)

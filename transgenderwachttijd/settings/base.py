@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django_filters',
     'django_q',
-    'graphene_django',
+    'strawberry.django',
     'articles.apps.ArticlesConfig',
     'providers.apps.ProvidersConfig',
     'services.apps.ServicesConfig'
