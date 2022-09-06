@@ -17,6 +17,11 @@ class ServiceAgeGroup:
     offerings: List['ServiceOffering']
 
 
+@strawberry.django.ordering.order(models.ServiceAgeGroup)
+class ServiceAgeGroupOrder:
+    name: auto
+
+
 @strawberry.django.type(models.ServiceType)
 class ServiceType:
     id: auto
@@ -24,6 +29,11 @@ class ServiceType:
     name: auto
 
     offerings: List['ServiceOffering']
+
+
+@strawberry.django.ordering.order(models.ServiceType)
+class ServiceTypeOrder:
+    name: auto
 
 
 @strawberry.django.type(models.Service)
@@ -37,6 +47,12 @@ class Service:
     parent: 'Service'
     dependants: List['Service']
     offerings: List['ServiceOffering']
+
+
+@strawberry.django.ordering.order(models.Service)
+class ServiceOrder:
+    name: auto
+    medical_name: auto
 
 
 @strawberry.django.type(models.ServiceOffering)
@@ -62,3 +78,8 @@ class ServiceTime:
     has_stop: auto
 
     offering: 'ServiceOffering'
+
+
+@strawberry.django.ordering.order(models.ServiceTime)
+class ServiceTimeOrder:
+    date: auto

@@ -22,6 +22,13 @@ class Provider:
     offerings: List[strawberry.LazyType['ServiceOffering', 'services.types']]
 
 
+@strawberry.django.ordering.order(models.Provider)
+class ProviderOrder:
+    name: auto
+    slug: auto
+    scraped_at: auto
+
+
 @strawberry.django.type(models.Location)
 class Location:
     id: auto
@@ -32,3 +39,9 @@ class Location:
     city: auto
 
     provider: 'Provider'
+
+
+@strawberry.django.ordering.order(models.Location)
+class LocationOrder:
+    name: auto
+    city: auto

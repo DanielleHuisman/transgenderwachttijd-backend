@@ -16,6 +16,12 @@ class ArticleCategory:
     feeds: List['ArticleSourceFeed']
 
 
+@strawberry.django.ordering.order(models.ArticleCategory)
+class ArticleCategoryOrder:
+    name: auto
+    slug: auto
+
+
 @strawberry.django.type(models.ArticleSource)
 class ArticleSource:
     id: auto
@@ -26,6 +32,12 @@ class ArticleSource:
 
     feeds: List['ArticleSourceFeed']
     articles: List['Article']
+
+
+@strawberry.django.ordering.order(models.ArticleSource)
+class ArticleSourceOrder:
+    name: auto
+    slug: auto
 
 
 @strawberry.django.type(models.ArticleSourceFeed)
@@ -41,6 +53,12 @@ class ArticleSourceFeed:
     articles: List['Article']
 
 
+@strawberry.django.ordering.order(models.ArticleSourceFeed)
+class ArticleSourceFeedOrder:
+    name: auto
+    scraped_at: auto
+
+
 @strawberry.django.type(models.Article)
 class Article:
     id: auto
@@ -54,3 +72,9 @@ class Article:
 
     source: 'ArticleSource'
     feed: 'ArticleSourceFeed'
+
+
+@strawberry.django.ordering.order(models.Article)
+class ArticleOrder:
+    title: auto
+    published_at: auto
