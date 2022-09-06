@@ -86,5 +86,5 @@ jobs:
           echo "$SSH_KNOWN_HOSTS" > ~/.ssh/known_hosts
           chmod 644 ~/.ssh/known_hosts
           eval $(ssh-agent -s)
-          ssh-add ~/.ssh/id_rsa
+          ssh-add ~/.ssh/id_ed25519
           ssh $SERVER_USER@$SERVER_HOST "transgenderwachttijd transgenderwachttijd-backend"
