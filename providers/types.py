@@ -4,12 +4,38 @@ import strawberry
 from strawberry import auto
 
 if TYPE_CHECKING:
-    from services.types import ServiceOffering
+    from services.types import ServiceOffering, ServiceOfferingFilter, ServiceOfferingOrder
 
 from . import models
 
 
-@strawberry.django.type(models.Provider)
+@strawberry.django.filters.filter(models.Provider, lookups=True)
+class ProviderFilter:
+    id: auto
+
+    name: auto
+    slug: auto
+    website: auto
+    scraped_at: auto
+
+    locations: 'LocationFilter'
+    offerings: strawberry.LazyType['ServiceOfferingFilter', 'services.types']
+
+
+@strawberry.django.ordering.order(models.Provider)
+class ProviderOrder:
+    id: auto
+
+    name: auto
+    slug: auto
+    website: auto
+    scraped_at: auto
+
+    locations: 'LocationOrder'
+    offerings: strawberry.LazyType['ServiceOfferingOrder', 'services.types']
+
+
+@strawberry.django.type(models.Provider, filters=ProviderFilter, order=ProviderOrder)
 class Provider:
     id: auto
 
@@ -22,14 +48,31 @@ class Provider:
     offerings: List[strawberry.LazyType['ServiceOffering', 'services.types']]
 
 
-@strawberry.django.ordering.order(models.Provider)
-class ProviderOrder:
+@strawberry.django.filters.filter(models.Location, lookups=True)
+class LocationFilter:
+    id: auto
+
     name: auto
-    slug: auto
-    scraped_at: auto
+    address: auto
+    postal_code: auto
+    city: auto
+
+    provider: 'ProviderFilter'
 
 
-@strawberry.django.type(models.Location)
+@strawberry.django.ordering.order(models.Location)
+class LocationOrder:
+    id: auto
+
+    name: auto
+    address: auto
+    postal_code: auto
+    city: auto
+
+    provider: 'ProviderOrder'
+
+
+@strawberry.django.type(models.Location, filters=LocationFilter, order=LocationOrder)
 class Location:
     id: auto
 
@@ -39,9 +82,3 @@ class Location:
     city: auto
 
     provider: 'Provider'
-
-
-@strawberry.django.ordering.order(models.Location)
-class LocationOrder:
-    name: auto
-    city: auto

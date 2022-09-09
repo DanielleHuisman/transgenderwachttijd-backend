@@ -2,7 +2,8 @@ from typing import List
 
 import strawberry
 
-from .types import ServiceAgeGroup, ServiceAgeGroupOrder, ServiceType, ServiceTypeOrder, Service, ServiceOrder, ServiceOffering, ServiceTime, ServiceTimeOrder
+from .types import ServiceAgeGroup, ServiceAgeGroupOrder, ServiceType, ServiceTypeOrder, Service, ServiceOrder, ServiceOffering, ServiceOfferingOrder,\
+    ServiceTime, ServiceTimeOrder
 
 
 @strawberry.type
@@ -17,7 +18,7 @@ class Query:
     services: List[Service] = strawberry.django.field(order=ServiceOrder)
 
     service_offering: ServiceOffering = strawberry.django.field()
-    service_offerings: List[ServiceOffering] = strawberry.django.field()
+    service_offerings: List[ServiceOffering] = strawberry.django.field(order=ServiceOfferingOrder)
 
     service_time: ServiceTime = strawberry.django.field()
     service_times: List[ServiceTime] = strawberry.django.field(order=ServiceTimeOrder)
