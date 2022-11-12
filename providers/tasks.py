@@ -38,6 +38,9 @@ def scrape():
                 # Scrape service times
                 service_times = scraper.scrape()
 
+                if len(service_times) == 0:
+                    raise Exception(f'No waiting times available for provider "{scraper.get_provider_handle()}".')
+
                 # Loop over scraped service times
                 for time in service_times:
                     # Look up service
