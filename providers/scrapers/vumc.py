@@ -125,7 +125,7 @@ SERVICES: list[ScraperServiceVUmc] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Phalloplastiek', 'phalloplastiek', '*door de grote toename'),
+    'match': ('Phalloplastiek', 'phalloplastiek', 'per'),
     'offering': {
         'service': 'Phalloplasty',
         'types': [TM],
@@ -144,9 +144,8 @@ class ScraperVUmc(Scraper):
         return 'amsterdam-umc'
 
     def get_source_url(self) -> str:
-        return 'https://www.vumc.nl/web/file?uuid=c04a8b57-c3f7-4f35-a71c-f1966c56293d'\
-               '&owner=5ec2d559-9d3f-4285-8cbd-140abc921b69'\
-               '&contentid=3013'\
+        return 'https://www.amc.nl/web/file?uuid=9a89ae1d-8bfa-48b6-bc83-184c9f76415f'\
+               '&owner=b501bc84-877f-44f8-86a7-9a02ec3bc4f2'\
                '&disposition=inline'
 
     def scrape(self) -> list[ScraperServiceTime]:
