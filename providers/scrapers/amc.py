@@ -3,16 +3,17 @@ from typing import TypedDict
 
 from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
-INDIVIDUAL_TEXT = 'individueel'
+TITLE_REGEX = re.compile(r'wachtlijst', re.IGNORECASE)
 TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
+INDIVIDUAL_TEXT = 'individueel'
 
 
-class ScraperServiceVUmc(TypedDict):
+class ScraperServiceAMC(TypedDict):
     match: tuple[str, str, str]
     offering: ScraperServiceOffering
 
 
-SERVICES: list[ScraperServiceVUmc] = [{
+SERVICES: list[ScraperServiceAMC] = [{
     'match': ('Eerste consult kinderen', 'eerste consult', 'volwassen'),
     'offering': {
         'service': 'Intake',
@@ -138,18 +139,22 @@ SERVICES: list[ScraperServiceVUmc] = [{
 # ('Verwijdering baarmoeder i.c.m. verwijdering vagina', 'verwijdering baarmoeder en', 'metaïdoioplastiek')
 
 
-class ScraperVUmc(Scraper):
+class ScraperAMC(Scraper):
 
     def get_provider_handle(self) -> str:
         return 'amsterdam-umc'
 
     def get_source_url(self) -> str:
-        return 'https://www.amc.nl/web/file?uuid=9a89ae1d-8bfa-48b6-bc83-184c9f76415f'\
-               '&owner=b501bc84-877f-44f8-86a7-9a02ec3bc4f2'\
-               '&disposition=inline'
+        return 'https://www.amc.nl/web/specialismen/genderdysforie/wachttijden.htm'
 
     def scrape(self) -> list[ScraperServiceTime]:
-        reader = self.fetch_pdf_document(self.get_source_url())
+        soup = self.fetch_html_page(self.get_source_url())
+
+        link = soup.find(class_='pdf', title=TITLE_REGEX)['href']
+        if link.startswith('/'):
+            link = f'https://www.amc.nl{link}'
+
+        reader = self.fetch_pdf_document(link)
 
         # month = reader.lines[0]
         # year = reader.lines[1]
