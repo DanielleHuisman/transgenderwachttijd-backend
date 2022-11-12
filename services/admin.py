@@ -8,24 +8,28 @@ from .models import ServiceAgeGroup, ServiceType, Service, ServiceOffering, Serv
 class ServiceAgeGroupAdmin(TranslationAdmin):
     list_display = ['id', 'name']
     list_filter = []
+    ordering = ['name']
 
 
 @register(ServiceType)
 class ServiceTypeAdmin(TranslationAdmin):
     list_display = ['id', 'name']
     list_filter = []
+    ordering = ['name']
 
 
 @register(Service)
 class ServiceAdmin(TranslationAdmin):
     list_display = ['id', 'name', 'medical_name', 'description', 'parent']
     list_filter = ['parent']
+    ordering = ['name']
 
 
 @register(ServiceOffering)
 class ServiceOfferingAdmin(TranslationAdmin):
     list_display = ['id', 'provider', 'service', 'age_groups_str', 'types_str']
     list_filter = ['provider', 'service', 'age_groups', 'types']
+    ordering = ['provider__name', 'service__name']
 
     def age_groups_str(self, offering: ServiceOffering):
         if offering.age_groups.count() == ServiceAgeGroup.objects.count():
@@ -42,3 +46,4 @@ class ServiceOfferingAdmin(TranslationAdmin):
 class ServiceTimeAdmin(ModelAdmin):
     list_display = ['id', 'offering', 'date', 'days', 'is_individual', 'has_stop']
     list_filter = ['offering', 'date', 'is_individual', 'has_stop']
+    ordering = ['-date']
