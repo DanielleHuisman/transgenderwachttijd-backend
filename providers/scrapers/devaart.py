@@ -13,25 +13,32 @@ class ScraperServiceDeVaart(TypedDict):
 
 
 SERVICES: list[ScraperServiceDeVaart] = [{
-    'match': 'Intake',
+    'match': 'Intake jeud',
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
-        'age_groups': [CHILDREN, ADOLESCENTS, ADULTS]
+        'age_groups': [CHILDREN, ADOLESCENTS]
     }
 }, {
-    'match': 'Specialistische GGZ',
+    'match': 'Intake volwassenen',
     'offering': {
-        'service': 'Diagnostics',
+        'service': 'Intake',
         'types': [TF, TM],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Kind en jeugd',
+    'match': 'Behandeling jeugd',
     'offering': {
         'service': 'Diagnostics',
         'types': [TF, TM],
         'age_groups': [CHILDREN, ADOLESCENTS]
+    }
+}, {
+    'match': 'Behandeling volwassenen',
+    'offering': {
+        'service': 'Diagnostics',
+        'types': [TF, TM],
+        'age_groups': [ADULTS]
     }
 }]
 
