@@ -8,12 +8,12 @@ TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
 INDIVIDUAL_TEXT = 'individueel'
 
 
-class ScraperServiceVUmc(TypedDict):
+class ScraperServiceAMC(TypedDict):
     match: tuple[str, str, str]
     offering: ScraperServiceOffering
 
 
-SERVICES: list[ScraperServiceVUmc] = [{
+SERVICES: list[ScraperServiceAMC] = [{
     'match': ('Eerste consult kinderen', 'eerste consult', 'volwassen'),
     'offering': {
         'service': 'Intake',
@@ -139,7 +139,7 @@ SERVICES: list[ScraperServiceVUmc] = [{
 # ('Verwijdering baarmoeder i.c.m. verwijdering vagina', 'verwijdering baarmoeder en', 'metaïdoioplastiek')
 
 
-class ScraperVUmc(Scraper):
+class ScraperAMC(Scraper):
 
     def get_provider_handle(self) -> str:
         return 'amsterdam-umc'
