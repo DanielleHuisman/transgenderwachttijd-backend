@@ -1,4 +1,5 @@
 from typing import List
+from uuid import UUID
 
 import strawberry
 from strawberry import auto
@@ -173,3 +174,10 @@ class ServiceTime:
     has_stop: auto
 
     offering: 'ServiceOffering'
+
+
+@strawberry.type
+class GraphSeries:
+    id: UUID
+    label: str
+    data: list[ServiceTime]

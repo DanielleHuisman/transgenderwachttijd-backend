@@ -171,7 +171,7 @@ STATICFILES_DIRS = [
 # Cross-Origin Resource Sharing (CORS)
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:1234'
+    'http://localhost:3000'
 ]
 
 CORS_ALLOW_CREDENTIALS = False

@@ -2,9 +2,9 @@ from typing import List
 
 import strawberry
 
-from .resolves import resolve_service_tree
+from .resolvers import resolve_graph, resolve_service_tree
 from .types import ServiceAgeGroup, ServiceAgeGroupOrder, ServiceType, ServiceTypeOrder, Service, ServiceOrder, ServiceOffering, ServiceOfferingOrder,\
-    ServiceTime, ServiceTimeOrder
+    ServiceTime, ServiceTimeOrder, GraphSeries
 
 
 @strawberry.type
@@ -25,3 +25,5 @@ class Query:
     service_times: List[ServiceTime] = strawberry.django.field(order=ServiceTimeOrder)
 
     service_tree: List[Service] = strawberry.django.field(order=ServiceOrder, resolver=resolve_service_tree)
+
+    graph: List[GraphSeries] = strawberry.field(resolver=resolve_graph)
