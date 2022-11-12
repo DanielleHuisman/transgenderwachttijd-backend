@@ -18,7 +18,7 @@ def resolve_graph(
 ) -> list[GraphSeries]:
     offerings_queryset = ServiceOffering.objects.order_by('provider__name', 'service__name')
 
-    if provider_ids  != UNSET:
+    if provider_ids != UNSET:
         offerings_queryset = offerings_queryset.filter(provider__id__in=provider_ids)
     if service_ids != UNSET:
         offerings_queryset = offerings_queryset.filter(service__id__in=service_ids)
@@ -28,7 +28,7 @@ def resolve_graph(
         offerings_queryset = offerings_queryset.filter(types__id__in=service_type_ids)
 
     series: list[GraphSeries] = []
-    for offering in offerings_queryset:
+    for offering in offerings_queryset.distinct():
         times_queryset = offering.times.order_by('date')
 
         if start != UNSET:
