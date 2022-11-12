@@ -97,6 +97,7 @@ class Service:
     description: auto
 
     parent: 'Service'
+    children: List['Service']
     dependants: List['Service']
     offerings: List['ServiceOffering']
 

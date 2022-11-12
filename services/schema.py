@@ -2,6 +2,7 @@ from typing import List
 
 import strawberry
 
+from .resolves import resolve_service_tree
 from .types import ServiceAgeGroup, ServiceAgeGroupOrder, ServiceType, ServiceTypeOrder, Service, ServiceOrder, ServiceOffering, ServiceOfferingOrder,\
     ServiceTime, ServiceTimeOrder
 
@@ -22,3 +23,5 @@ class Query:
 
     service_time: ServiceTime = strawberry.django.field()
     service_times: List[ServiceTime] = strawberry.django.field(order=ServiceTimeOrder)
+
+    service_tree: List[Service] = strawberry.django.field(order=ServiceOrder, resolver=resolve_service_tree)
