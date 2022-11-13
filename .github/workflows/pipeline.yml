@@ -88,4 +88,4 @@ jobs:
           chmod 644 ~/.ssh/known_hosts
           eval $(ssh-agent -s)
           ssh-add ~/.ssh/id_ed25519
-          ssh $SERVER_USER@$SERVER_HOST "transgenderwachttijd transgenderwachttijd-backend"
+          ssh $SERVER_USER@$SERVER_HOST "transgenderwachttijd transgenderwachttijd-backend transgenderwachttijd-backend-queue"
