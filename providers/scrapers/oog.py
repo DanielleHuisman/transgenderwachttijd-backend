@@ -22,7 +22,7 @@ class ScraperOOG(Scraper):
         for header in headers:
             name = soup_find_string(header.find(class_='elementor-price-list-title'))
 
-            if name.startswith('Genderteam Zuid-Nederland'):
+            if 'Genderteam Zuid-Nederland' in name:
                 result = YEARS_REGEX.search(soup_find_string(header.find(class_='elementor-price-list-price')))
                 years = int(result.group(1))
                 print(name)
