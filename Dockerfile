@@ -20,7 +20,7 @@ COPY --chown=worker:worker Pipfile /srv/app
 COPY --chown=worker:worker Pipfile.lock /srv/app
 
 # Install app dependencies
-RUN pipenv --three install
+RUN pipenv install
 
 # Copy app source
 COPY --chown=worker:worker . /srv/app
