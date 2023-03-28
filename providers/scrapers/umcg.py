@@ -26,38 +26,45 @@ SERVICES: list[ScraperServiceUMCG] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Plastische Chirurgie - Mastectomie',
+    'match': 'Plastische chirurgie - Mastectomie',
     'offering': {
         'service': 'Mastectomy',
         'types': [TM],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Plastische Chirurgie - Vaginaplastiek',
+    'match': 'Plastische chirurgie - Vaginaplastiek',
     'offering': {
         'service': 'Vaginaplasty',
         'types': [TF],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Plastische Chirurgie - Secundaire genitale correcties',
+    'match': 'Plastische chirurgie - Secundaire genitale correcties',
     'offering': {
         'service': 'Secondary corrections',
         'types': [TF],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Plastische Chirurgie - Mamma-augmentatie',
+    'match': 'Plastische chirurgie - Mamma-augmentatie',
     'offering': {
         'service': 'Breast augmentation',
         'types': [TF],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Plastische Chirurgie - Feminisatieoperaties',
+    'match': 'Plastische chirurgie - Feminisatieoperaties',
     'offering': {
         'service': 'Facial surgery',
         'types': [TF],
+        'age_groups': [ADULTS]
+    }
+}, {
+    'match': 'Plastische chirurgie - Phalloplastiek',
+    'offering': {
+        'service': 'Phalloplasty',
+        'types': [TM],
         'age_groups': [ADULTS]
     }
 }, {
@@ -100,7 +107,7 @@ class ScraperUMCG(Scraper):
             title = title.split('(')[0].strip()
             name = f'{last_header} - {title}'
 
-            weeks: Optional[int] = None
+            days: Optional[int] = None
             is_individual: bool = False
             for table_column in table_row.find_all('td'):
                 content = soup_find_string(table_column)
@@ -110,23 +117,23 @@ class ScraperUMCG(Scraper):
                         break
 
                     try:
-                        weeks = int(content.replace('>', ''))
+                        days = int(content.replace('>', ''))
                     except ValueError:
                         continue
 
-                    if weeks:
+                    if days:
                         break
 
-            if weeks or is_individual:
+            if days or is_individual:
                 print(name)
-                print(f'{weeks} weeks')
+                print(f'{days} days')
                 print('individual', is_individual)
 
                 for service in SERVICES:
                     if service['match'] == name:
                         # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
                         service_time: ScraperServiceTime = service['offering'].copy()
-                        service_time['days'] = None if is_individual else weeks * 7
+                        service_time['days'] = None if is_individual else days
                         service_time['is_individual'] = is_individual
                         service_time['has_stop'] = False
                         service_times.append(service_time)
