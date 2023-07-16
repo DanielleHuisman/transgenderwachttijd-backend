@@ -4,7 +4,7 @@ from typing import TypedDict
 from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
 TITLE_REGEX = re.compile(r'wachtlijst', re.IGNORECASE)
-TIME_REGEX = re.compile(r'(\d+)\s?dagen.+?(\d+)\s?weken', re.IGNORECASE)
+TIME_REGEX = re.compile(r'(\d+(?:[,.]\d+)?)\s?(dagen|jaar).+?(\d+(?:[,.]\d+)?)\s?(weken|jaar)', re.IGNORECASE)
 INDIVIDUAL_TEXT = 'individueel'
 
 
@@ -98,7 +98,7 @@ SERVICES: list[ScraperServiceAMC] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Borstverwijdering', 'borstverwijdering (mastectomie)', 'borstverwijdering i.c.m. het verwijderen'),
+    'match': ('Borstverwijdering', 'borstverwijdering (mastectomie)', 'borstverwijdering'),
     'offering': {
         'service': 'Mastectomy',
         'types': [TM],
@@ -112,7 +112,7 @@ SERVICES: list[ScraperServiceAMC] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Verwijdering vagina', 'vagina (colpectomie)', 'verwijdering baarmoeder en'),
+    'match': ('Verwijdering vagina', 'vagina (colpectomie)', 'verwijdering'),
     'offering': {
         'service': 'Colpectomy',
         'types': [TM],
@@ -126,7 +126,7 @@ SERVICES: list[ScraperServiceAMC] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Phalloplastiek', 'phalloplastiek', 'per'),
+    'match': ('Phalloplastiek', 'phalloplastiek', 'disclaimer'),
     'offering': {
         'service': 'Phalloplasty',
         'types': [TM],
@@ -172,8 +172,15 @@ class ScraperAMC(Scraper):
                 is_individual = INDIVIDUAL_TEXT in result
                 times = TIME_REGEX.search(result)
                 if times:
-                    days = int(times.group(1))
-                    weeks = int(times.group(2))
+                    if times.group(2) == 'jaar':
+                        days = round(float(times.group(1).replace(',', '.')) * 365.25)
+                    else:
+                        days = int(times.group(1))
+
+                    if times.group(4) == 'jaar':
+                        weeks = round(float(times.group(3).replace(',', '.')) * 52)
+                    else:
+                        weeks = int(times.group(3))
                 else:
                     print('no match')
                     days = None
