@@ -16,15 +16,16 @@ class PDFReader:
 
         joined = ''
         spaces = 0
-        for string in self.viewer.canvas.strings:
-            if string == ' ':
-                spaces += 1
-            else:
-                if spaces >= 1:
-                    joined += '\n'
+        for canvas in self.viewer:
+            for string in canvas.strings:
+                if string == ' ':
+                    spaces += 1
+                else:
+                    if spaces >= 1:
+                        joined += '\n'
 
-                spaces = 0
-                joined += string.lower()
+                    spaces = 0
+                    joined += string.lower()
 
         self.content = joined
         self.lines = joined.split('\n')
