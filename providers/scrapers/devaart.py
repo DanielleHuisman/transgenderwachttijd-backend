@@ -13,7 +13,7 @@ class ScraperServiceDeVaart(TypedDict):
 
 
 SERVICES: list[ScraperServiceDeVaart] = [{
-    'match': 'Intake jeud',
+    'match': 'Intake jeugd',
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
