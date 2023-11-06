@@ -1,15 +1,12 @@
 import os
-from distutils.util import strtobool
 from pathlib import Path
+from typing import Optional
 
 from dotenv import load_dotenv
 
 
-def parse_boolean(value: str):
-    try:
-        return strtobool(value) == 1 if value is not None else False
-    except ValueError:
-        return False
+def parse_boolean(value: Optional[str]):
+    return value and value.strip().lower() == 'true'
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
