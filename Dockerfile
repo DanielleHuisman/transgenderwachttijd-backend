@@ -18,6 +18,7 @@ USER worker
 # Copy pyproject.toml and poetry.lock so Docker can cache dependencies
 COPY --chown=worker:worker pyproject.toml /srv/app
 COPY --chown=worker:worker poetry.lock /srv/app
+COPY --chown=worker:worker README.md /srv/app
 
 # Install app dependencies
 RUN poetry install
