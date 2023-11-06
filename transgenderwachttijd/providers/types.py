@@ -3,8 +3,10 @@ from typing import List, TYPE_CHECKING
 import strawberry
 from strawberry import auto
 
+import transgenderwachttijd
+
 if TYPE_CHECKING:
-    from services.types import ServiceOffering, ServiceOfferingFilter, ServiceOfferingOrder
+    from transgenderwachttijd.services.types import ServiceOffering, ServiceOfferingFilter, ServiceOfferingOrder
 
 from . import models
 
@@ -19,7 +21,7 @@ class ProviderFilter:
     scraped_at: auto
 
     locations: 'LocationFilter'
-    offerings: strawberry.LazyType['ServiceOfferingFilter', 'services.types']
+    offerings: strawberry.LazyType['ServiceOfferingFilter', 'transgenderwachttijd.services.types']
 
 
 @strawberry.django.ordering.order(models.Provider)
@@ -32,7 +34,7 @@ class ProviderOrder:
     scraped_at: auto
 
     locations: 'LocationOrder'
-    offerings: strawberry.LazyType['ServiceOfferingOrder', 'services.types']
+    offerings: strawberry.LazyType['ServiceOfferingOrder', 'transgenderwachttijd.services.types']
 
 
 @strawberry.django.type(models.Provider, filters=ProviderFilter, order=ProviderOrder)
@@ -45,7 +47,7 @@ class Provider:
     scraped_at: auto
 
     locations: List['Location']
-    offerings: List[strawberry.LazyType['ServiceOffering', 'services.types']]
+    offerings: List[strawberry.LazyType['ServiceOffering', 'transgenderwachttijd.services.types']]
 
 
 @strawberry.django.filters.filter(models.Location, lookups=True)

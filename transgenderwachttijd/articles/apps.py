@@ -3,7 +3,7 @@ from django.apps import AppConfig
 
 
 class ArticlesConfig(AppConfig):
-    name = 'articles'
+    name = 'transgenderwachttijd.articles'
 
     def ready(self):
         if 'django_q_schedule' in connection.introspection.table_names():

@@ -1,11 +1,11 @@
-from providers.scrapers.base import Scraper
-from providers.scrapers.devaart import ScraperDeVaart
-from providers.scrapers.jonx import ScraperJonx
-from providers.scrapers.oog import ScraperOOG
-from providers.scrapers.psytrans import ScraperPsyTrans
-from providers.scrapers.radboudumc import ScraperRadboudumc
-from providers.scrapers.umcg import ScraperUMCG
-from providers.scrapers.amc import ScraperAMC
+from transgenderwachttijd.providers.scrapers.base import Scraper
+from transgenderwachttijd.providers.scrapers.amc import ScraperAMC
+from transgenderwachttijd.providers.scrapers.devaart import ScraperDeVaart
+from transgenderwachttijd.providers.scrapers.jonx import ScraperJonx
+from transgenderwachttijd.providers.scrapers.oog import ScraperOOG
+from transgenderwachttijd.providers.scrapers.psytrans import ScraperPsyTrans
+from transgenderwachttijd.providers.scrapers.radboudumc import ScraperRadboudumc
+from transgenderwachttijd.providers.scrapers.umcg import ScraperUMCG
 
 
 def test(scraper_name: str):
