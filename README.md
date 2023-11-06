@@ -3,8 +3,8 @@
 Tracking waiting times for transgender health care in the Netherlands.
 
 This project consists of two repositories:
-- [Backend](https://github.com/DanielHuisman/transgenderwachttijd-backend)
-- [Frontend](https://github.com/DanielHuisman/transgenderwachttijd-frontend)
+- [Backend](https://github.com/DanielleHuisman/transgenderwachttijd-backend)
+- [Frontend](https://github.com/DanielleHuisman/transgenderwachttijd-frontend)
 
 # Backend
 
