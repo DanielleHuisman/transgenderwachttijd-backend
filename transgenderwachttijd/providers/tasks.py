@@ -13,7 +13,7 @@ from .scrapers import scrapers
 
 def initialize_tasks():
     if not Schedule.objects.filter(name='scrape').first():
-        schedule('providers.tasks.scrape', name='scrape', schedule_type=Schedule.CRON, cron='00 12 * * *')
+        schedule('transgenderwachttijd.providers.tasks.scrape', name='scrape', schedule_type=Schedule.CRON, cron='00 12 * * *')
 
 
 def scrape():

@@ -16,7 +16,7 @@ KEYWORDS = ['transgender']
 
 def initialize_tasks():
     if not Schedule.objects.filter(name='scrape_rss_feeds').first():
-        schedule('articles.tasks.scrape_rss_feeds', name='scrape_rss_feeds', schedule_type=Schedule.CRON, cron='00 * * * *')
+        schedule('transgenderwachttijd.articles.tasks.scrape_rss_feeds', name='scrape_rss_feeds', schedule_type=Schedule.CRON, cron='00 * * * *')
 
 
 def scrape_rss_feeds():
