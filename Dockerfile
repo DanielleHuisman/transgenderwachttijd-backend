@@ -1,11 +1,11 @@
-# Use Python 3 on Debian Buster as base image
-FROM python:buster
+# Use Python 3 as base image
+FROM python:latest
 
 # Install dependencies
-RUN apt update && apt install -y build-essential default-libmysqlclient-dev
+RUN apt update && apt install -y build-essential default-libmysqlclient-dev gettext
 
-# Install Pipenv
-RUN pip install pipenv
+# Install Poetry
+RUN pip install poetry
 
 # Create user
 RUN useradd -m worker
@@ -15,12 +15,12 @@ RUN mkdir -p /srv/app && chown -R worker:worker /srv/app
 WORKDIR /srv/app
 USER worker
 
-# Copy Pipfile and Pipfile.lock so Docker can cache dependencies
-COPY --chown=worker:worker Pipfile /srv/app
-COPY --chown=worker:worker Pipfile.lock /srv/app
+# Copy pyproject.toml and poetry.lock so Docker can cache dependencies
+COPY --chown=worker:worker pyproject.toml /srv/app
+COPY --chown=worker:worker poetry.lock /srv/app
 
 # Install app dependencies
-RUN pipenv install
+RUN poetry install
 
 # Copy app source
 COPY --chown=worker:worker . /srv/app
@@ -31,4 +31,4 @@ EXPOSE 3000
 
 # Define entrypoint and command of the app
 ENTRYPOINT ["/bin/sh"]
-CMD ["/srv/app/start_server.sh"]
+CMD ["/srv/app/scripts/start_server.sh"]

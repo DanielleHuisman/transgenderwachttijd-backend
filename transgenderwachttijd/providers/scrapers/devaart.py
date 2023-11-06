@@ -4,7 +4,7 @@ from typing import TypedDict
 from ..util import soup_find_string
 from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
-WEEKS_REGEX = re.compile(r'(\d+) wk', re.IGNORECASE)
+WEEKS_REGEX = re.compile(r'(\d+) (wk|weken)', re.IGNORECASE)
 
 
 class ScraperServiceDeVaart(TypedDict):
@@ -67,6 +67,7 @@ class ScraperDeVaart(Scraper):
                 continue
 
             name = soup_find_string(columns[0])
+            print(soup_find_string(columns[1]))
             result = WEEKS_REGEX.search(soup_find_string(columns[1]))
             weeks = int(result.group(1))
             print(name)

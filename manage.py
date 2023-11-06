@@ -6,9 +6,9 @@ import sys
 
 def main():
     if os.path.exists('.production'):
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'transgenderwachttijd.settings.production')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings.production')
     else:
-        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'transgenderwachttijd.settings.development')
+        os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'application.settings.development')
 
     try:
         from django.core.management import execute_from_command_line

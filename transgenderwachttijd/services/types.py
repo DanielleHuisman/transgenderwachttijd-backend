@@ -4,7 +4,7 @@ from uuid import UUID
 import strawberry
 from strawberry import auto
 
-from providers.types import Provider, ProviderFilter, ProviderOrder
+from transgenderwachttijd.providers.types import Provider, ProviderFilter, ProviderOrder
 
 from . import models
 

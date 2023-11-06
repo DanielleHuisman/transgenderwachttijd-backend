@@ -3,9 +3,9 @@ from django.db.models import Q
 from django.utils import timezone
 from django_q.tasks import schedule, Schedule
 
-from providers.models import Provider
-from providers.scrapers.base import TF, TM, CHILDREN, ADOLESCENTS, ADULTS
-from services.models import Service, ServiceType, ServiceAgeGroup, ServiceOffering, ServiceTime
+from transgenderwachttijd.providers.models import Provider
+from transgenderwachttijd.providers.scrapers.base import TF, TM, CHILDREN, ADOLESCENTS, ADULTS
+from transgenderwachttijd.services.models import Service, ServiceType, ServiceAgeGroup, ServiceOffering, ServiceTime
 from transgenderwachttijd.logging import logger
 
 from .scrapers import scrapers

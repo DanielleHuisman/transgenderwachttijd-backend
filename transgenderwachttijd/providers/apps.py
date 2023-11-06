@@ -3,7 +3,7 @@ from django.apps import AppConfig
 
 
 class ProvidersConfig(AppConfig):
-    name = 'providers'
+    name = 'transgenderwachttijd.providers'
 
     def ready(self):
         if 'django_q_schedule' in connection.introspection.table_names():

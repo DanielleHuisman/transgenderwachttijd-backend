@@ -2,7 +2,7 @@ from uuid import uuid4
 
 from django.db import models
 
-from providers.models import Provider
+from transgenderwachttijd.providers.models import Provider
 
 
 class ServiceAgeGroup(models.Model):
