@@ -13,8 +13,6 @@ class ArticleCategoryFilter:
     name: auto
     slug: auto
 
-    feeds: 'ArticleSourceFeedFilter'
-
 
 @strawberry.django.ordering.order(models.ArticleCategory)
 class ArticleCategoryOrder:
@@ -43,9 +41,6 @@ class ArticleSourceFilter:
     name: auto
     slug: auto
     website: auto
-
-    feeds: 'ArticleSourceFeedFilter'
-    articles: 'ArticleFilter'
 
 
 @strawberry.django.ordering.order(models.ArticleSource)
@@ -82,7 +77,6 @@ class ArticleSourceFeedFilter:
 
     source: 'ArticleSourceFilter'
     category: 'ArticleCategoryFilter'
-    articles: 'ArticleFilter'
 
 
 @strawberry.django.ordering.order(models.ArticleSourceFeed)

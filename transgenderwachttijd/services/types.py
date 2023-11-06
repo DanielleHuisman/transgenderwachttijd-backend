@@ -15,8 +15,6 @@ class ServiceAgeGroupFilter:
 
     name: auto
 
-    offerings: 'ServiceOfferingFilter'
-
 
 @strawberry.django.ordering.order(models.ServiceAgeGroup)
 class ServiceAgeGroupOrder:
@@ -41,8 +39,6 @@ class ServiceTypeFilter:
     id: auto
 
     name: auto
-
-    offerings: 'ServiceOfferingFilter'
 
 
 @strawberry.django.ordering.order(models.ServiceType)
@@ -70,10 +66,6 @@ class ServiceFilter:
     name: auto
     medical_name: auto
     description: auto
-
-    parent: 'ServiceFilter'
-    dependants: 'ServiceFilter'
-    offerings: 'ServiceOfferingFilter'
 
 
 @strawberry.django.ordering.order(models.Service)
@@ -110,9 +102,6 @@ class ServiceOfferingFilter:
     notes: auto
 
     provider: 'ProviderFilter'
-    age_groups: 'ServiceAgeGroupFilter'
-    types: 'ServiceTypeFilter'
-    times: 'ServiceTimeFilter'
 
 
 @strawberry.django.ordering.order(models.ServiceOffering)

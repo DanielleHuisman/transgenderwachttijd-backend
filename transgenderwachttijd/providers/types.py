@@ -20,9 +20,6 @@ class ProviderFilter:
     website: auto
     scraped_at: auto
 
-    locations: 'LocationFilter'
-    offerings: strawberry.LazyType['ServiceOfferingFilter', 'transgenderwachttijd.services.types']
-
 
 @strawberry.django.ordering.order(models.Provider)
 class ProviderOrder:
