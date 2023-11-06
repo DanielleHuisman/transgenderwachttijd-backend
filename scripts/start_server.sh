@@ -1,8 +1,5 @@
 #!/bin/sh
 
-# Change to root directory
-cd ..
-
 # Compile translation messages
 poetry run python manage.py compilemessages
 

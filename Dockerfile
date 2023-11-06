@@ -1,5 +1,5 @@
 # Use Python 3 as base image
-FROM python:latest
+FROM python:3.11
 
 # Install dependencies
 RUN apt update && apt install -y build-essential default-libmysqlclient-dev gettext
