@@ -5,7 +5,7 @@ build-backend = "poetry.core.masonry.api"
 [tool.poetry]
 name = "transgenderwachttijd"
 version = "0.1.0"
-description = "Website which displays the current waiting times for transgender health care in the Netherlands."
+description = "Tracking waiting times for transgender health care in the Netherlands."
 authors = ["Danielle Huisman <danielle@huisman.me>"]
 maintainers = ["Danielle Huisman <danielle@huisman.me>"]
 license = "MIT"

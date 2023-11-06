@@ -1,6 +1,6 @@
 # transgenderwachttijd.nl
 
-Website which displays the current waiting times for transgender health care in the Netherlands.
+Tracking waiting times for transgender health care in the Netherlands.
 
 This project consists of two repositories:
 - [Backend](https://github.com/DanielHuisman/transgenderwachttijd-backend)
