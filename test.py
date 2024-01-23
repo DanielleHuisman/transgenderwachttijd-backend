@@ -1,3 +1,5 @@
+import json
+
 from transgenderwachttijd.providers.scrapers.base import Scraper
 from transgenderwachttijd.providers.scrapers.amc import ScraperAMC
 from transgenderwachttijd.providers.scrapers.devaart import ScraperDeVaart
@@ -28,7 +30,7 @@ def test(scraper_name: str):
     else:
         raise Exception(f'Unknown scraper "{scraper_name}"')
 
-    print(scraper.scrape())
+    print(json.dumps(scraper.scrape(), indent=2))
 
 
 test('devaart')
