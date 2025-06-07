@@ -1,10 +1,11 @@
 import re
 from typing import TypedDict
 
+from ..util import search_last
 from .base import Scraper, ScraperServiceOffering, ScraperServiceTime, TF, TM, CHILDREN, ADOLESCENTS, ADULTS
 
-TITLE_REGEX = re.compile(r'wachtlijst', re.IGNORECASE)
-TIME_REGEX = re.compile(r'(\d+(?:[,.]\d+)?)\s?(dagen|jaar).+?(\d+(?:[,.]\d+)?)\s?(weken|jaar)', re.IGNORECASE)
+HREF_REGEX = re.compile(r'wachtlijst', re.IGNORECASE)
+TIME_REGEX = re.compile(r'(\d+(?:[,.]\d+)?)\s?(dagen|week|weken|maand|maanden|jaar)', re.IGNORECASE)
 INDIVIDUAL_TEXT = 'individueel'
 
 
@@ -14,28 +15,28 @@ class ScraperServiceAMC(TypedDict):
 
 
 SERVICES: list[ScraperServiceAMC] = [{
-    'match': ('Eerste consult kinderen', 'eerste consult', 'volwassen'),
+    'match': ('Eerste consult kinderen', 'kinderen/adolescenten: eerste consult', 'volwassen'),
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
         'age_groups': [CHILDREN, ADOLESCENTS]
     }
 }, {
-    'match': ('Eerste consult volwassenen', 'eerste consult', 'start diagnostiek kinderen'),
+    'match': ('Eerste consult volwassenen', 'volwassenen: eerste consult', 'kinderen/ adolescenten'),
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Start diagnostiek kinderen', 'start diagnostiek kinderen', 'start diagnostiek volwassenen'),
+    'match': ('Start diagnostiek kinderen', 'kinderen/ adolescenten: start diagnostiek', 'volwassenen'),
     'offering': {
         'service': 'Diagnostics',
         'types': [TF, TM],
         'age_groups': [CHILDREN, ADOLESCENTS]
     }
 }, {
-    'match': ('Start diagnostiek volwassenen', 'start diagnostiek volwassenen', 'hormoonbehandeling'),
+    'match': ('Start diagnostiek volwassenen', 'volwassenen: start diagnostiek', 'hormoonbehandeling'),
     'offering': {
         'service': 'Diagnostics',
         'types': [TF, TM],
@@ -126,7 +127,7 @@ SERVICES: list[ScraperServiceAMC] = [{
         'age_groups': [ADULTS]
     }
 }, {
-    'match': ('Phalloplastiek', 'phalloplastiek', 'disclaimer'),
+    'match': ('Phalloplastiek', 'phalloplastiek', 'uitleg wachttijden'),
     'offering': {
         'service': 'Phalloplasty',
         'types': [TM],
@@ -145,14 +146,14 @@ class ScraperAMC(Scraper):
         return 'amsterdam-umc'
 
     def get_source_url(self) -> str:
-        return 'https://www.amc.nl/web/specialismen/genderdysforie/wachttijden.htm'
+        return 'https://www.amsterdamumc.nl/nl/genderdysforie/wachttijden.htm'
 
     def scrape(self) -> list[ScraperServiceTime]:
         soup = self.fetch_html_page(self.get_source_url())
 
-        link = soup.find(class_='pdf', title=TITLE_REGEX)['href']
+        link = soup.find(class_='download', href=HREF_REGEX)['href']
         if link.startswith('/'):
-            link = f'https://www.amc.nl{link}'
+            link = f'https://www.amsterdamumc.nl/{link}'
 
         reader = self.fetch_pdf_document(link)
 
@@ -170,24 +171,25 @@ class ScraperAMC(Scraper):
             if result:
                 print(result)
                 is_individual = INDIVIDUAL_TEXT in result
-                times = TIME_REGEX.search(result)
+                times = search_last(TIME_REGEX, result)
                 if times:
-                    if times.group(2) == 'jaar':
+                    unit = times.group(2)
+                    if unit == 'jaar':
                         days = round(float(times.group(1).replace(',', '.')) * 365.25)
-                    else:
+                    elif unit == 'maand' or unit == 'maanden':
+                        days = round(float(times.group(1).replace(',', '.')) * 30)
+                    elif unit == 'week' or unit == 'weken':
+                        days = round(float(times.group(1).replace(',', '.')) * 7)
+                    elif unit == 'dagen':
                         days = int(times.group(1))
-
-                    if times.group(4) == 'jaar':
-                        weeks = round(float(times.group(3).replace(',', '.')) * 52)
                     else:
-                        weeks = int(times.group(3))
+                        print('unknown unit', unit)
+                        days = None
                 else:
                     print('no match')
                     days = None
-                    weeks = None
 
                 print(days, 'days')
-                print(weeks, 'weeks')
                 print('individual',  is_individual)
 
                 # NOTE: the object spread operator would be nicer here, but Python's typing is terrible

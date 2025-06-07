@@ -1,3 +1,4 @@
+import re
 from io import BytesIO
 from typing import List, Optional
 
@@ -21,8 +22,10 @@ class PDFReader:
                 if string == ' ':
                     spaces += 1
                 else:
-                    if spaces >= 1:
+                    if spaces >= 2:
                         joined += '\n'
+                    elif spaces == 1:
+                        joined += ' '
 
                     spaces = 0
                     joined += string.lower()
@@ -31,22 +34,15 @@ class PDFReader:
         self.lines = joined.split('\n')
 
     def find(self, start_text: str, end_text: str) -> Optional[str]:
-        start = -1
-        end = -1
-
-        for i in range(len(self.lines)):
-            line = self.lines[i]
-            if start_text in line:
-                start = i
-            elif start > 0 and end_text in line:
-                end = i
-                break
-
-        if start < 0 or end < 0:
+        start = self.content.find(start_text)
+        if start == -1:
             return None
 
-        return ' '.join(self.lines[start:end])
+        end = self.content.find(end_text, start + len(start_text))
+        if end == -1:
+            return None
 
+        return self.content[start:end]
 
 def soup_find_string(soup) -> Optional[str]:
     length = len(soup.contents)
@@ -62,3 +58,17 @@ def soup_find_string(soup) -> Optional[str]:
                 return text
 
     return None
+
+def search_last(pattern: re.Pattern, value: str) -> Optional[re.Match]:
+    pos = 0
+    last_match = None
+
+    while True:
+        match = pattern.search(value, pos)
+        if not match:
+            break
+
+        pos = match.end()
+        last_match = match
+
+    return last_match
