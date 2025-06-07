@@ -38,7 +38,7 @@ class ScraperPsyTrans(Scraper):
         return 'psytrans'
 
     def get_source_url(self):
-        return 'https://psytrans.nl/werkwijze/'
+        return 'https://psytrans.nl/'
 
     def scrape(self) -> list[ScraperServiceTime]:
         text = self.fetch_page(self.get_source_url())
