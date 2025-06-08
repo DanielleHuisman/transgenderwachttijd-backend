@@ -13,7 +13,7 @@
         "model": "providers.provider",
         "pk": "44006a5f-8ab3-4a9c-abc1-b230a82a329b",
         "fields": {
-            "name": "Radboucumc",
+            "name": "Radboudumc",
             "slug": "radboudumc",
             "website": "https://www.radboudumc.nl/expertisecentra/geslacht-en-gender/waarvoor-kunt-u-bij-ons-terecht/transgenderzorg",
             "scraped_at": "2021-11-07T15:23:28.211Z"
