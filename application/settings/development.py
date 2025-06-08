@@ -7,7 +7,7 @@ DEBUG = True
 
 SECRET_KEY = '5cw1)q4ww+ckr5wevw@wr2zymp57$k@4fy3*@h2%(l79bx5b9i'
 
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 
 # Cross-Origin Resource Sharing (CORS)

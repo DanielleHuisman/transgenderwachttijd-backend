@@ -80,6 +80,16 @@
         }
     },
     {
+        "model": "providers.provider",
+        "pk": "12e70d46-abd3-4d31-98e6-b579b26fd7c4",
+        "fields": {
+            "name": "Genderhealthcare",
+            "slug": "genderhealthcare",
+            "website": "https://genderhealthcare.com",
+            "scraped_at": "2021-11-07T15:23:29.328Z"
+        }
+    },
+    {
         "model": "providers.location",
         "pk": "00ffa957-8001-4fae-9343-d9ac314a8a1b",
         "fields": {
@@ -231,6 +241,17 @@
             "postal_code": "7328JK",
             "city": "Apeldoorn",
             "provider": "a90d9792-a5a3-46a5-b6d4-a1000b205479"
+        }
+    },
+    {
+        "model": "providers.location",
+        "pk": "a63d8796-e0ac-4fb8-b73c-38f233d4c657",
+        "fields": {
+            "name": "Genderhealthcare Utrecht",
+            "address": "Niasstraat 1",
+            "postal_code": "3531WR",
+            "city": "Utrecht",
+            "provider": "12e70d46-abd3-4d31-98e6-b579b26fd7c4"
         }
     }
 ]
