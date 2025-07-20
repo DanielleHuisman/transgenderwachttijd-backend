@@ -8,33 +8,33 @@ WEEKS_REGEX = re.compile(r'(\d+) (wk|weken)', re.IGNORECASE)
 
 
 class ScraperServiceDeVaart(TypedDict):
-    match: str
+    match: tuple[str, str]
     offering: ScraperServiceOffering
 
 
 SERVICES: list[ScraperServiceDeVaart] = [{
-    'match': 'Intake jeugd',
+    'match': ('Intake', 'Jeugd'),
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
         'age_groups': [CHILDREN, ADOLESCENTS]
     }
 }, {
-    'match': 'Intake volwassenen',
+    'match': ('Intake', 'Volwassen'),
     'offering': {
         'service': 'Intake',
         'types': [TF, TM],
         'age_groups': [ADULTS]
     }
 }, {
-    'match': 'Behandeling jeugd',
+    'match': ('Behandeling', 'Jeugd'),
     'offering': {
         'service': 'Diagnostics',
         'types': [TF, TM],
         'age_groups': [CHILDREN, ADOLESCENTS]
     }
 }, {
-    'match': 'Behandeling volwassenen',
+    'match': ('Behandeling', 'Volwassen'),
     'offering': {
         'service': 'Diagnostics',
         'types': [TF, TM],
@@ -54,35 +54,50 @@ class ScraperDeVaart(Scraper):
     def scrape(self) -> list[ScraperServiceTime]:
         soup = self.fetch_html_page(self.get_source_url())
 
-        tables = soup.find_all('table')
-        table = tables[2]
-        table_body = table.tbody
+        service_times: dict[tuple[str, str], ScraperServiceTime] = {}
 
-        service_times: list[ScraperServiceTime] = []
+        for table in soup.find_all('table'):
+            service_name = None
 
-        for table_row in table_body.children:
-            columns = [column for column in table_row.children]
+            for table_row in table.tbody.find_all('tr'):
+                columns = [column for column in table_row.find_all('td')]
+                if len(columns) < 2:
+                    continue
 
-            if columns[1].strong:
-                continue
+                if columns[1].strong:
+                    service_name = soup_find_string(columns[1].strong).strip()
+                    continue
 
-            name = soup_find_string(columns[0])
-            print(soup_find_string(columns[1]))
-            result = WEEKS_REGEX.search(soup_find_string(columns[1]))
-            weeks = int(result.group(1))
-            print(name)
-            print(f'{weeks} weken')
+                name = soup_find_string(columns[0])
+                time = soup_find_string(columns[1])
+                if not name or 'gender' not in name or not time:
+                    continue
 
-            for service in SERVICES:
-                if service['match'] == name:
-                    # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
-                    service_time: ScraperServiceTime = service['offering'].copy()
-                    service_time['days'] = weeks * 7
-                    service_time['is_individual'] = False
-                    service_time['has_stop'] = False
-                    service_times.append(service_time)
-                    break
-            else:
-                print('no match')
+                name = name.replace('gender', '').strip()
+                result = WEEKS_REGEX.search(time)
+                weeks = int(result.group(1))
 
-        return service_times
+                if service_name:
+                    print(f'{service_name} - {name}')
+                    print(f'{weeks} weken')
+                else:
+                    print('no match')
+                    continue
+
+                match = (service_name, name)
+                days = weeks * 7
+
+                for service in SERVICES:
+                    if service['match'] != match:
+                        continue
+
+                    if match not in service_times or days < service_times[match]['days']:
+                        # NOTE: the object spread operator would be nicer here, but Python's typing is terrible
+                        service_time: ScraperServiceTime = service['offering'].copy()
+                        service_time['days'] = days
+                        service_time['is_individual'] = False
+                        service_time['has_stop'] = False
+                        service_times[match] = service_time
+                        break
+
+        return list(service_times.values())

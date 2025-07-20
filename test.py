@@ -33,4 +33,4 @@ def test(scraper_name: str):
     print(json.dumps(scraper.scrape(), indent=2))
 
 
-test('genderhealthcare')
+test('devaart')
