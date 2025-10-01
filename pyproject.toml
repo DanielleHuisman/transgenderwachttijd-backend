@@ -28,7 +28,7 @@ classifiers = [
 
 [tool.poetry.dependencies]
 python = "^3.11"
-Django = "^4.2.24"
+Django = "^4.2.25"
 django-cors-headers = "^4.7.0"
 django-filter = "^25.1"
 django-modeltranslation = "^0.19.15"
